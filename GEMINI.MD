@@ -70,3 +70,17 @@ O diretório `coffee-with-godot` é um fork do repositório principal e deve ser
     4.  Preparar um commit para o **repositório principal** com uma mensagem de versão clara (ex: `feat: Release version 0.11`).
     5.  Preparar um commit para o **repositório `coffee-with-godot`** com uma mensagem de sincronização correspondente (ex: `feat: Sync with main repo - v0.11`).
     6.  Apresentar ambos os commits para aprovação e executá-los em conjunto.
+
+## 4. Gestão de Licenças e Atribuições de Assets
+
+Esta regra é fundamental para a integridade legal e ética do projeto.
+
+1.  **Verificação Obrigatória:** Antes de adicionar qualquer asset de terceiros (código, imagens, sons, etc.) ao projeto, o assistente deve verificar sua licença para garantir a compatibilidade com a licença Apache 2.0 do projeto. Se o usuário não fornecer uma licença, o assistente deve perguntar.
+2.  **Atribuição no Arquivo NOTICE:** Se a licença do asset exigir atribuição (como Creative Commons, MIT, etc.), o assistente deve obrigatoriamente adicionar a informação de crédito no arquivo `NOTICE`.
+3.  **Atualização Dupla:** A atribuição deve ser adicionada tanto no `NOTICE` do repositório principal (`Café com Godot`) em português, quanto no `NOTICE` do repositório derivado (`coffee-with-godot`) em inglês.
+4.  **Formato Padrão:** O formato da atribuição deve seguir o padrão já estabelecido. Exemplo:
+    ```
+    - "[Nome do Asset]" por [Autor/Criador]
+      - Fonte: [URL para o asset]
+      - Licença: [Nome da Licença]
+    ```
