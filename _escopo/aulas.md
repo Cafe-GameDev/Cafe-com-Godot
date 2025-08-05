@@ -1,3 +1,32 @@
+<style>
+  /* Este bloco será usado pelo Dillinger mas ignorado pelo GitHub */
+  
+  /* Define a fonte padrão para o documento */
+  body {
+    font-family: sans-serif;
+    line-height: 1.6;
+  }
+
+  /* Todos os títulos h2 serão verdes */
+  h2 {
+    color: green;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+  }
+
+  /* Todos os links serão azuis e sem sublinhado */
+  a {
+    color: #007BFF; /* Um tom de azul */
+    text-decoration: none; /* Remove o sublinhado */
+  }
+
+  /* Links mudam de cor ao passar o mouse */
+  a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+</style>
+
 # Estrutura de Aulas do Curso (Índice Detalhado e Expandido)
 
 Este documento delineia a trilha de aprendizagem completa do curso. A estrutura foi projetada para ser uma formação de nível universitário, levando o aluno do zero absoluto ao nível profissional.
