@@ -594,3 +594,33 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
 
 
 ---
+
+## **Módulo 04: **
+
+
+---
+
+## **Módulo 05: **
+
+
+---
+
+## **Módulo 06: Desafio: Faça seu Jogo**
+
+
+---
+
+## **Módulo 07:**
+
+
+---
+
+## **Módulo 08:**
+
+
+---
+
+## **Módulo 09: ARPG*
+
+
+---

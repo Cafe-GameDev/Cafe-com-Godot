@@ -18,25 +18,6 @@ Diferente de um curso em vídeo, este repositório **é o próprio curso**. Todo
 
 A estrutura de pastas foi desenhada para ser uma trilha de aprendizagem clara e sequencial. **Comece pelo módulo `00` e siga a ordem numérica.**
 
-*   ### 📂 [00-Comece-Aqui](./00-Comece-Aqui/)
-    *   **O que é:** A introdução ao curso, à filosofia do Godot e o guia para configurar seu ambiente de desenvolvimento.
-    *   **Ponto de Partida Obrigatório!**
-
-*   ### 📂 [01-Fundamentos-do-Godot](./01-Fundamentos-do-Godot/)
-    *   **O que é:** Aulas teóricas e conceituais sobre os pilares da Godot Engine: Nós, Cenas, GDScript, Sinais e o uso de Recursos como arquitetura de dados.
-
-*   ### 📂 [02-Projetos-Guiados](./02-Projetos-Guiados/)
-    *   **O que é:** A seção prática! Aqui você encontrará tutoriais passo a passo para construir jogos completos, aplicando os conceitos aprendidos. A dificuldade é progressiva.
-
-*   ### 📂 [03-Sistemas-Modulares-Essenciais](./03-Sistemas-Modulares-Essenciais/)
-    *   **O que é:** Uma biblioteca de sistemas de jogo reutilizáveis. Cada pasta contém a explicação teórica (`Explicacao.md`) e o código de implementação de um sistema profissional (Máquina de Estados, Inventário, Diálogo, etc.).
-
-*   ### 📂 [04-Topicos-Avancados](./04-Topicos-Avancados/)
-    *   **O que é:** Aulas que aprofundam em temas que separam jogos amadores de produtos polidos, como *Game Feel*, otimização, design de narrativa e práticas de produção.
-
-*   ### 📂 [05-Recursos-e-Ferramentas](./05-Recursos-e-Ferramentas/)
-    *   **O que é:** Guias e tutoriais sobre ferramentas externas (Aseprite, Blender, etc.) e plugins essenciais do ecossistema Godot.
-
 ## 🚀 Como Começar
 
 1.  **Clone o Repositório:**
