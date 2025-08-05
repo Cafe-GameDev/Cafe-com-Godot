@@ -39,4 +39,4 @@ Este é um projeto Open Source! Contribuições são muito bem-vindas. Se você 
 
 ## 📄 Licença
 
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+Este projeto está licenciado sob a Licença APACHE 2.0. Veja o arquivo `LICENSE` para mais detalhes.
