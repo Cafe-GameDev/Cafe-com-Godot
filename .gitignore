@@ -27,8 +27,7 @@ build/
 bin/
 obj/
 tree.ps1
-repo_ingles/
-
+coffee-with-godot/
 
 # Python-specific ignores
 # Ignore virtual environments
