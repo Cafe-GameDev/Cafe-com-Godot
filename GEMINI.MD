@@ -58,15 +58,15 @@ Este modo é destinado a usuários que já completaram o curso e desejam usar es
     -   Se solicitado a implementar um sistema complexo (ex: Machine Learning), ele deve usar a metodologia descrita no manual correspondente.
     -   O princípio fundamental "Propor, Aguardar, Executar" continua se aplicando. O usuário ainda é o líder do projeto.
 
-## 3. Diretiva de Sincronização de Repositórios (Principal e `repo_ingles`)
+## 3. Diretiva de Sincronização de Repositórios (Principal e `coffee-with-godot`)
 
-O diretório `repo_ingles` é um fork do repositório principal e deve ser mantido em sincronia a cada nova versão, seguindo um fluxo de trabalho específico.
+O diretório `coffee-with-godot` é um fork do repositório principal e deve ser mantido em sincronia a cada nova versão, seguindo um fluxo de trabalho específico.
 
--   **Operação Padrão:** O assistente não deve modificar o `repo_ingles` de forma independente. As alterações devem ocorrer apenas como parte de um ciclo de versionamento.
+-   **Operação Padrão:** O assistente não deve modificar o `coffee-with-godot` de forma independente. As alterações devem ocorrer apenas como parte de um ciclo de versionamento.
 -   **Ciclo de Versionamento e Sincronização:** Quando o usuário solicitar a criação de uma nova versão (ex: "preparar a versão 0.11"), o assistente deve executar o seguinte processo:
     1.  Confirmar que todas as alterações no repositório principal estão prontas.
     2.  Identificar todas as modificações (novos conteúdos e arquivos alterados) no repositório principal desde a última sincronização.
-    3.  Traduzir todas essas modificações do português para o inglês, atualizando o conteúdo e os nomes dos arquivos correspondentes dentro de `repo_ingles`.
+    3.  Traduzir todas essas modificações do português para o inglês, atualizando o conteúdo e os nomes dos arquivos correspondentes dentro de `coffee-with-godot`.
     4.  Preparar um commit para o **repositório principal** com uma mensagem de versão clara (ex: `feat: Release version 0.11`).
-    5.  Preparar um commit para o **repositório `repo_ingles`** com uma mensagem de sincronização correspondente (ex: `feat: Sync with main repo - v0.11`).
+    5.  Preparar um commit para o **repositório `coffee-with-godot`** com uma mensagem de sincronização correspondente (ex: `feat: Sync with main repo - v0.11`).
     6.  Apresentar ambos os commits para aprovação e executá-los em conjunto.
