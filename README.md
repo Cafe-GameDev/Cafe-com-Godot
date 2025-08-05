@@ -1,7 +1,5 @@
 # Curso de Godot 2D: Do Zero ao Profissional (Open Source)
 
-Esse repositorio esta sendo refatorado, por isso ainda não temos os conteudos individuais das aulas, manuais, apostilas e outros materiais, o que estamos fazendo é planejando o escopo em _meta, atualmente pareamos no modulo 02 das aulas
-
 Bem-vindo ao repositório oficial do curso **"Godot 2D: Do Zero ao Profissional"**! Este projeto é uma iniciativa **Open Source** e um curso completo, baseado em texto, que te guiará desde os primeiros passos na Godot Engine até a criação de jogos complexos com arquitetura profissional.
 
 ## 📚 O Curso em Formato de Repositório
@@ -14,22 +12,20 @@ Diferente de um curso em vídeo, este repositório **é o próprio curso**. Todo
 *   Desenvolver projetos práticos e completos, passo a passo.
 *   Adquirir uma mentalidade de engenharia de software aplicada a jogos.
 
+## 🚀 A Plataforma de Desenvolvimento Gemini
+
+Uma característica única deste curso é sua integração com o assistente de IA Gemini. Este repositório não é apenas para aprender; é um ambiente de desenvolvimento pré-configurado.
+
+**Como funciona:**
+1.  **Faça um Fork deste repositório:** Isso cria sua própria cópia do projeto.
+2.  **Use o Gemini CLI:** Ao executar o Gemini CLI dentro do seu projeto "forkado", o assistente já terá todo o contexto da arquitetura e das boas práticas do curso.
+3.  **Acelere seu desenvolvimento:** Seja você um aluno seguindo as lições ou um graduado construindo seu próprio jogo, o assistente atuará como um parceiro especialista, ajudando você a implementar sistemas (como Máquinas de Estado, dados baseados em `Resource`, etc.) de acordo com os padrões profissionais ensinados aqui.
+
+Essa abordagem transforma o aprendizado em um fluxo de trabalho poderoso e produtivo.
+
 ## 🗺️ Trilha de Aprendizagem: Como Navegar no Curso
 
 A estrutura de pastas foi desenhada para ser uma trilha de aprendizagem clara e sequencial. **Comece pelo módulo `00` e siga a ordem numérica.**
-
-## 🚀 Como Começar
-
-1.  **Clone o Repositório:**
-    ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    cd seu-repositorio
-    ```
-    *(Substitua pelo link real do repositório.)*
-
-2.  **Navegue até a pasta `00-Comece-Aqui`** e leia os arquivos em ordem. Eles te darão todo o contexto necessário.
-
-3.  **Siga a Trilha de Aprendizagem** na ordem numérica das pastas.
 
 ## 🤝 Contribuições
 
