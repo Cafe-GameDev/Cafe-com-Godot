@@ -1,0 +1,1 @@
+Esse repositorio esta sendo refatorado, por isso ainda não temos os conteudos individuais das aulas,   manuais, apostilas e outros materiais, o que estamos fazendo é planejando o escopo em _meta, atualmente pareamos no modulo 02 das aulas 

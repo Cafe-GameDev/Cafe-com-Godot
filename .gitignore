@@ -1,0 +1,59 @@
+# Godot-specific ignores
+# Ignore the .godot directory, which stores project-specific editor data.
+.godot/
+
+# Ignore imported resources and remapped files, as they are generated on import.
+*.translation
+*.remap
+*.s3tc.ctex
+*.etc.ctex
+*.etc2.ctex
+*.astc.ctex
+*.binary
+*.stex
+*.exe
+Godot.exe
+
+# Ignore user-specific editor settings.
+.editor/
+project.godot-res_*/
+project.binary
+
+# Mono/C# specific ignores (if you ever use it)
+.mono/
+mono_custom_builds/
+api/
+build/
+bin/
+obj/
+
+# Python-specific ignores
+# Ignore virtual environments
+.env/
+.venv/
+venv/
+env/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# General ignores
+# Ignore OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Ignore sensitive files
+*.env
+.env.*
+secrets.cfg
+
+# Ignore log files
+*.log
