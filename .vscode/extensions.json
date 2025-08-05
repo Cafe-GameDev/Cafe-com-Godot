@@ -10,10 +10,16 @@
     "eamodio.gitlens",
     "kisstkondoros.vscode-gutter-preview",
 
+    // Machine Learning (Python, C++, ONNX)
+    "ms-python.python", // Suporte essencial para Python
+    "ms-python.black-formatter", // Formatador de código Python
+    "ms-python.mypy-type-checker", // Verificador de tipos para Python
+    "ms-vscode.cpptools", // Suporte essencial para C/C++ (para GDExtension)
+    "netron.netron", // Visualizador de modelos de ML (ONNX)
+
     // Tema, Ícones e UI (suas escolhas)
     "miguelsolorio.min-theme",
     "miguelsolorio.symbols",
-    "pkief.material-icon-theme",
     "drcika.apc-extension",
 
     // Pacote de Idioma
