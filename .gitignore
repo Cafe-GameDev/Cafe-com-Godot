@@ -27,6 +27,8 @@ build/
 bin/
 obj/
 tree.ps1
+repo_ingles/
+
 
 # Python-specific ignores
 # Ignore virtual environments
