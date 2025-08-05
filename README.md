@@ -27,6 +27,20 @@ Essa abordagem transforma o aprendizado em um fluxo de trabalho poderoso e produ
 
 A estrutura de pastas foi desenhada para ser uma trilha de aprendizagem clara e sequencial. **Comece pelo módulo `00` e siga a ordem numérica.**
 
+## ⚙️ Configuração do Ambiente (VS Code)
+
+Para a melhor experiência de desenvolvimento, este repositório já vem pré-configurado para o Visual Studio Code.
+
+Ao abrir o projeto pela primeira vez, siga estes passos:
+
+1.  **Instale as Extensões Recomendadas:** O VS Code irá notificá-lo sobre uma lista de extensões recomendadas para este workspace. Clique em **"Instalar"** para configurar automaticamente o ambiente com ferramentas para Godot (GDScript), Markdown e mais.
+2.  **Configure o Caminho do Godot:** A integração com o motor Godot requer uma configuração manual:
+    *   Abra o arquivo: `.vscode/settings.json`.
+    *   Encontre a linha que diz `"godot_tools.editor_path"`.
+    *   Substitua o valor `"INSIRA_AQUI_O_CAMINHO_PARA_O_SEU_EXECUTAVEL_DO_GODOT"` pelo caminho absoluto para o executável do Godot no seu computador.
+
+Feito isso, seu ambiente estará pronto!
+
 ## 🤝 Contribuições
 
 Este é um projeto Open Source! Contribuições são muito bem-vindas. Se você encontrar erros, tiver sugestões de melhoria, ou quiser adicionar conteúdo, por favor:

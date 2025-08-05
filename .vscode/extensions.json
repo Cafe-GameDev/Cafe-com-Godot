@@ -1,0 +1,22 @@
+{
+  "recommendations": [
+    // Ferramentas Essenciais para o Projeto
+    "godot-tools.godot-tools",
+    "esbenp.prettier-vscode", // Para formatar Markdown de forma consistente
+    "yzhang.markdown-all-in-one", // Ferramentas gerais para MD
+    "davidanson.vscode-markdownlint", // Linter para regras de MD
+    "shd101wyy.markdown-preview-enhanced", // Preview avançado de MD
+    "streetsidesoftware.code-spell-checker",
+    "eamodio.gitlens",
+    "kisstkondoros.vscode-gutter-preview",
+
+    // Tema, Ícones e UI (suas escolhas)
+    "miguelsolorio.min-theme",
+    "miguelsolorio.symbols",
+    "pkief.material-icon-theme",
+    "drcika.apc-extension",
+
+    // Pacote de Idioma
+    "ms-ceintl.vscode-language-pack-pt-br"
+  ]
+}
