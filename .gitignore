@@ -13,6 +13,7 @@
 *.stex
 *.exe
 Godot.exe
+TOOLING/
 
 # Ignore user-specific editor settings.
 .editor/
