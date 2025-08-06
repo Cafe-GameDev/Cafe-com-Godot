@@ -19,6 +19,7 @@ TOOLING.md
 .editor/
 project.godot-res_*/
 project.binary
+projetos/
 
 # Mono/C# specific ignores (if you ever use it)
 .mono/

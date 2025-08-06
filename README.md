@@ -41,6 +41,20 @@ Ao abrir o projeto pela primeira vez, siga estes passos:
 
 Feito isso, seu ambiente estará pronto!
 
+## 🧪 Filosofia de Testes com GUT (Godot Unit Test)
+
+A qualidade e a estabilidade são pilares fundamentais deste projeto. Para garantir um desenvolvimento robusto e sustentável, adotamos o **GUT (Godot Unit Test)** como o framework de testes automatizados padrão.
+
+**Por que testar?**
+*   **Confiança para Refatorar:** Altere e melhore o código com a segurança de que os testes verificarão se as funcionalidades existentes continuam operando como esperado.
+*   **Detecção Rápida de Bugs:** Encontre problemas no momento em que são introduzidos, economizando horas de depuração futura.
+*   **Documentação Viva:** Os testes servem como um exemplo prático de como o código deve ser utilizado.
+
+**Diretriz Oficial:**
+> Toda nova funcionalidade, sistema ou correção de bug crítico deve, sempre que possível, ser acompanhado por testes unitários correspondentes no GUT.
+
+Esta prática é essencial para a saúde do projeto a longo prazo e um requisito para contribuições que envolvam lógica de jogo.
+
 ## 🤝 Contribuições
 
 Este é um projeto Open Source! Contribuições são muito bem-vindas. Se você encontrar erros, tiver sugestões de melhoria, ou quiser adicionar conteúdo, por favor:

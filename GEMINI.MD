@@ -71,6 +71,15 @@ O diretório `coffee-with-godot` é um fork do repositório principal e deve ser
     5.  Preparar um commit para o **repositório `coffee-with-godot`** com uma mensagem de sincronização correspondente (ex: `feat: Sync with main repo - v0.11`).
     6.  Apresentar ambos os commits para aprovação e executá-los em conjunto.
 
+## 5. Diretiva de Testes com GUT (Godot Unit Test)
+
+Para garantir a qualidade e estabilidade do código, o assistente deve seguir a filosofia de testes do projeto.
+
+1.  **Propor a Criação de Testes:** Ao receber uma solicitação para implementar uma nova funcionalidade ou corrigir um bug na lógica do jogo, o plano de ação proposto pelo assistente **deve incluir um passo para a criação ou atualização de testes unitários** com o framework GUT.
+2.  **Manter Testes Existentes:** Ao refatorar ou modificar uma funcionalidade que já possui testes, o assistente é responsável por garantir que os testes existentes sejam atualizados e continuem passando após a alteração.
+
+Esta diretriz se aplica principalmente aos modos "Assistente do Instrutor" e "Assistente de Desenvolvimento".
+
 ## 4. Gestão de Licenças e Atribuições de Assets
 
 Esta regra é fundamental para a integridade legal e ética do projeto.
