@@ -14,7 +14,6 @@
 *.exe
 Godot.exe
 TOOLING/
-TOOLING.md
 # Ignore user-specific editor settings.
 .editor/
 project.godot-res_*/
