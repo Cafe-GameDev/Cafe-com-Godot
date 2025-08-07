@@ -1,0 +1,6 @@
+[submodule "coffee-with-godot"]
+	path = coffee-with-godot
+	url = https://github.com/Cafe-GameDev/Coffee-with-Godot
+[submodule "cafe-gemini"]
+	path = cafe-gemini
+	url = https://github.com/Cafe-GameDev/Cafe-Gemini

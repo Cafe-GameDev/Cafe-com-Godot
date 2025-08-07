@@ -12,6 +12,8 @@
 *.binary
 *.stex
 *.exe
+*.png
+
 Godot.exe
 # Ignore user-specific editor settings.
 .editor/
@@ -23,7 +25,8 @@ aulas/
 TOOLING/installers/
 manuais-old/
 cafe-gemini-cli
-
+assets/
+assets/2D-Pixel-Art-Character-Template/
 # Mono/C# specific ignores (if you ever use it)
 .mono/
 mono_custom_builds/
