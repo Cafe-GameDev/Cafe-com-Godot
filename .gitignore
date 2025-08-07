@@ -20,7 +20,7 @@ project.binary
 projetos/
 manuais/
 aulas/
-TOOLING/
+TOOLING/installers/
 manuais-old/
 
 # Mono/C# specific ignores (if you ever use it)
