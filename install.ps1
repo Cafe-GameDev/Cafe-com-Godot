@@ -1,73 +1,109 @@
-# Script para instalar ou atualizar a personalidade "cafe-gemini" para o assistente Gemini.
+# Script para instalar ou atualizar a personalidade "cafe-gemini" e suas dependencias.
 
 # --- Configuracao ---
 $RepoUrl = "https://github.com/Cafe-GameDev/Cafe-com-Godot.git"
 $PersonalityName = "cafe-gemini"
 $InstallDir = "$HOME\.gemini\personalities\$PersonalityName"
+$UpdateCmdName = "cafe-gemini-update"
 
 # --- Inicio do Script ---
+Write-Host "----------------------------------------------------------------"
+Write-Host "Iniciando o instalador do assistente 'cafe-gemini'..."
+Write-Host "----------------------------------------------------------------"
 
-# 1. Verificar se o Git esta instalado
-if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
-    Write-Host "ERRO: Git nao encontrado. Por favor, instale o Git e adicione-o ao seu PATH."
+# 1. Verificar se o npm (Node.js) esta instalado
+if (-not (Get-Command npm -ErrorAction SilentlyContinue)) {
+    Write-Host "ERRO: npm (Node.js) nao encontrado."
+    Write-Host "Por favor, instale o Node.js (https://nodejs.org/) e tente novamente."
     exit 1
 }
 
-# 2. Logica de Instalacao ou Atualizacao
+# 2. Instalar/Atualizar o Gemini CLI globalmente
+Write-Host "-> Passo 1/4: Verificando e instalando o Gemini CLI..."
+npm install -g @google/gemini-cli
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "ERRO: Falha ao instalar '@google/gemini-cli'. Verifique sua instalacao do npm."
+    exit 1
+}
+Write-Host "Gemini CLI instalado com sucesso."
+
+# 3. Logica de Instalacao ou Atualizacao do Repositorio
+Write-Host "-> Passo 2/4: Verificando o repositorio da personalidade..."
 if (Test-Path (Join-Path $InstallDir ".git")) {
-    Write-Host "Personalidade '$PersonalityName' ja instalada. Atualizando..."
+    Write-Host "Repositorio ja existe. Atualizando..."
     try {
         Set-Location $InstallDir
         git pull
-        Write-Host "Atualizacao concluida com sucesso."
         Set-Location $PSScriptRoot
+        Write-Host "Repositorio atualizado com sucesso."
     } catch {
-        Write-Host "ERRO: Falha ao executar 'git pull'. Verifique sua conexao com a internet e o estado do repositorio."
+        Write-Host "ERRO: Falha ao executar 'git pull'."
         exit 1
     }
 } else {
-    Write-Host "Instalando a personalidade '$PersonalityName'..."
+    Write-Host "Clonando o repositorio da personalidade..."
     try {
-        if (-not (Test-Path $InstallDir)) {
-            New-Item -ItemType Directory -Force -Path $InstallDir | Out-Null
-        }
+        New-Item -ItemType Directory -Force -Path $InstallDir | Out-Null
         git clone $RepoUrl $InstallDir
-        Write-Host "Instalacao concluida com sucesso."
+        Write-Host "Repositorio clonado com sucesso."
     } catch {
         Write-Host "ERRO: Falha ao clonar o repositorio."
         exit 1
     }
 }
 
-# 3. Garantir que o arquivo de perfil do PowerShell exista
+# 4. Garantir que o arquivo de perfil do PowerShell exista e adicionar os comandos
+Write-Host "-> Passo 3/4: Configurando os comandos..."
 if (-not (Test-Path $PROFILE)) {
     New-Item -Path $PROFILE -ItemType File -Force | Out-Null
     Write-Host "Arquivo de perfil do PowerShell criado em '$PROFILE'."
 }
 
-# 4. Adicionar a funcao ao perfil do PowerShell
-# A funcao e mais robusta que um alias, pois lida corretamente com argumentos.
-$FunctionDefinition = @"
-
-# Funcao para o assistente Gemini especializado (Cafe-com-Godot)
+$Comment = "# Comandos para o assistente Gemini especializado (Cafe-com-Godot)"
+$MainFunction = @"
 function $PersonalityName {
     gemini --include-directories "$InstallDir" --load-memory-from-include-directories `$args
 }
 "@
+$UpdateFunction = @"
+function $UpdateCmdName {
+    powershell.exe -ExecutionPolicy Bypass -File "$InstallDir\install.ps1"
+}
+"@
 
 $CurrentProfileContent = Get-Content $PROFILE -Raw -ErrorAction SilentlyContinue
+
+# Garante que o comentario exista
+if (-not ($CurrentProfileContent -match $Comment)) {
+    Add-Content -Path $PROFILE -Value "`n$Comment"
+}
+
+# Adiciona ou atualiza a funcao principal
 if (-not ($CurrentProfileContent -match "function\s+$PersonalityName")) {
-    Write-Host "Adicionando o comando '$PersonalityName' ao seu perfil do PowerShell..."
-    Add-Content -Path $PROFILE -Value $FunctionDefinition
+    Add-Content -Path $PROFILE -Value $MainFunction
+    Write-Host "Comando '$PersonalityName' adicionado."
 } else {
-    Write-Host "Comando '$PersonalityName' ja configurado em seu perfil."
+    Write-Host "Comando '$PersonalityName' ja configurado."
+}
+
+# Adiciona ou atualiza a funcao de update
+if (-not ($CurrentProfileContent -match "function\s+$UpdateCmdName")) {
+    Add-Content -Path $PROFILE -Value $UpdateFunction
+    Write-Host "Comando '$UpdateCmdName' adicionado."
+} else {
+    Write-Host "Comando '$UpdateCmdName' ja configurado."
 }
 
 # 5. Mensagem final
+Write-Host "-> Passo 4/4: Finalizacao."
 Write-Host ""
 Write-Host "----------------------------------------------------------------"
-Write-Host "Tudo pronto! Para aplicar as mudancas, reinicie seu terminal"
-Write-Host "ou execute o comando: . `$PROFILE"
-Write-Host "Apos isso, o comando '$PersonalityName' estara disponivel em qualquer diretorio."
-Write-Host "Para atualizar no futuro, basta executar este script novamente."
+Write-Host "🎉 Instalacao/Atualizacao concluida com sucesso! 🎉"
+Write-Host ""
+Write-Host "Para aplicar as mudancas, reinicie seu terminal ou execute:"
+Write-Host ". `$PROFILE"
+Write-Host ""
+Write-Host "Comandos disponiveis:"
+Write-Host "  $PersonalityName        - Inicia o assistente especializado."
+Write-Host "  $UpdateCmdName - Atualiza o assistente para a versao mais recente."
 Write-Host "----------------------------------------------------------------"
