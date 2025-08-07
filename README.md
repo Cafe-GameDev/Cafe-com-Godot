@@ -7,10 +7,11 @@ Bem-vindo ao repositório oficial do curso **"Godot 2D: Do Zero ao Profissional"
 Diferente de um curso em vídeo, este repositório **é o próprio curso**. Todo o material didático está organizado em formato de texto (Markdown), permitindo que você aprenda no seu próprio ritmo, como se estivesse lendo um livro interativo.
 
 **Objetivos Principais:**
-*   Dominar a Godot Engine para desenvolvimento 2D.
-*   Aprender a projetar e implementar arquiteturas de jogo robustas e escaláveis.
-*   Desenvolver projetos práticos e completos, passo a passo.
-*   Adquirir uma mentalidade de engenharia de software aplicada a jogos.
+
+- Dominar a Godot Engine para desenvolvimento 2D.
+- Aprender a projetar e implementar arquiteturas de jogo robustas e escaláveis.
+- Desenvolver projetos práticos e completos, passo a passo.
+- Adquirir uma mentalidade de engenharia de software aplicada a jogos.
 
 ## 🚀 Café Gemini: Seu Copiloto Especialista em Godot
 
@@ -27,6 +28,7 @@ A instalação é feita através do NPM (Node Package Manager).
 > **Pré-requisito:** Você precisa ter o [Node.js](https://nodejs.org/downloads/) (que inclui o `npm`) instalado no seu sistema.
 
 Com o Node.js pronto, abra seu terminal e execute o comando:
+
 ```bash
 npm install -g @cafe-gamedev/gemini
 ```
@@ -37,10 +39,10 @@ npm install -g @cafe-gamedev/gemini
 
 Após a instalação, os seguintes comandos estarão disponíveis em qualquer diretório do seu sistema:
 
-*   `cafe-gemini`
-    *   Inicia uma conversa com o assistente especializado.
-*   `cafe-gemini-update`
-    *   Atualiza o assistente para a versão mais recente, baixando os manuais e templates mais atuais.
+- `cafe-gemini`
+  - Inicia uma conversa com o assistente especializado.
+- `cafe-gemini-update`
+  - Atualiza o assistente para a versão mais recente, baixando os manuais e templates mais atuais.
 
 ## 🗺️ Trilha de Aprendizagem: Como Navegar no Curso
 
@@ -54,9 +56,9 @@ Ao abrir o projeto pela primeira vez, siga estes passos:
 
 1.  **Instale as Extensões Recomendadas:** O VS Code irá notificá-lo sobre uma lista de extensões recomendadas para este workspace. Clique em **"Instalar"** para configurar automaticamente o ambiente com ferramentas para Godot (GDScript), Markdown e mais.
 2.  **Configure o Caminho do Godot:** A integração com o motor Godot requer uma configuração manual:
-    *   Abra o arquivo: `.vscode/settings.json`.
-    *   Encontre a linha que diz `"godot_tools.editor_path"`.
-    *   Substitua o valor `"INSIRA_AQUI_O_CAMINHO_PARA_O_SEU_EXECUTAVEL_DO_GODOT"` pelo caminho absoluto para o executável do Godot no seu computador.
+    - Abra o arquivo: `.vscode/settings.json`.
+    - Encontre a linha que diz `"godot_tools.editor_path"`.
+    - Substitua o valor `"INSIRA_AQUI_O_CAMINHO_PARA_O_SEU_EXECUTAVEL_DO_GODOT"` pelo caminho absoluto para o executável do Godot no seu computador.
 
 Feito isso, seu ambiente estará pronto!
 
@@ -65,11 +67,13 @@ Feito isso, seu ambiente estará pronto!
 A qualidade e a estabilidade são pilares fundamentais deste projeto. Para garantir um desenvolvimento robusto e sustentável, adotamos o **GUT (Godot Unit Test)** como o framework de testes automatizados padrão.
 
 **Por que testar?**
-*   **Confiança para Refatorar:** Altere e melhore o código com a segurança de que os testes verificarão se as funcionalidades existentes continuam operando como esperado.
-*   **Detecção Rápida de Bugs:** Encontre problemas no momento em que são introduzidos, economizando horas de depuração futura.
-*   **Documentação Viva:** Os testes servem como um exemplo prático de como o código deve ser utilizado.
+
+- **Confiança para Refatorar:** Altere e melhore o código com a segurança de que os testes verificarão se as funcionalidades existentes continuam operando como esperado.
+- **Detecção Rápida de Bugs:** Encontre problemas no momento em que são introduzidos, economizando horas de depuração futura.
+- **Documentação Viva:** Os testes servem como um exemplo prático de como o código deve ser utilizado.
 
 **Diretriz Oficial:**
+
 > Toda nova funcionalidade, sistema ou correção de bug crítico deve, sempre que possível, ser acompanhado por testes unitários correspondentes no GUT.
 
 Esta prática é essencial para a saúde do projeto a longo prazo e um requisito para contribuições que envolvam lógica de jogo.
