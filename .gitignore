@@ -22,9 +22,7 @@ project.binary
 projetos/
 manuais/
 aulas/
-TOOLING/installers/
 manuais-old/
-cafe-gemini-cli
 assets/
 assets/2D-Pixel-Art-Character-Template/
 # Mono/C# specific ignores (if you ever use it)
@@ -34,8 +32,8 @@ api/
 build/
 bin/
 obj/
-tree.ps1
 coffee-with-godot/
+Cafe-Gemini/
 
 # Python-specific ignores
 # Ignore virtual environments
