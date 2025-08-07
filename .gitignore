@@ -12,8 +12,6 @@
 *.binary
 *.stex
 *.exe
-*.png
-
 Godot.exe
 # Ignore user-specific editor settings.
 .editor/
@@ -23,8 +21,13 @@ projetos/
 manuais/
 aulas/
 manuais-old/
+<<<<<<< HEAD
 assets/
 assets/2D-Pixel-Art-Character-Template/
+=======
+cafe-gemini-cli
+
+>>>>>>> parent of 95e61f5 (add)
 # Mono/C# specific ignores (if you ever use it)
 .mono/
 mono_custom_builds/
