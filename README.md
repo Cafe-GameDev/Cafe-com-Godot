@@ -12,39 +12,35 @@ Diferente de um curso em vídeo, este repositório **é o próprio curso**. Todo
 *   Desenvolver projetos práticos e completos, passo a passo.
 *   Adquirir uma mentalidade de engenharia de software aplicada a jogos.
 
-## 🚀 Assistente `cafe-gemini`: Seu Especialista em Godot
+## 🚀 Café Gemini: Seu Copiloto Especialista em Godot
 
-Uma característica única deste curso é sua integração com um assistente de IA especializado. Ao instalar o `cafe-gemini`, você ganha um parceiro de desenvolvimento que já conhece toda a arquitetura e as boas práticas ensinadas aqui. Ele não é um assistente genérico; ele é um especialista neste curso.
+Uma característica única deste projeto é o **Café Gemini**, um assistente de IA que transforma o Gemini em um copiloto especializado para a Godot Engine.
 
-### Instalação (Comando Único)
+Embora tenha sido treinado com todo o conteúdo e arquitetura deste curso, o Café Gemini é uma ferramenta poderosa para **qualquer desenvolvedor Godot**. Ele tem acesso direto ao seu ambiente de desenvolvimento (código-fonte, cenas, nós, etc.), permitindo que você tire dúvidas, gere código e refatore sistemas de forma contextual e inteligente.
 
-A instalação é feita com um único comando no seu terminal. Ele cuidará de tudo: instalará o Gemini CLI (via Node.js), baixará os manuais do curso e configurará os comandos para você.
+Ele não é um assistente genérico; é o seu especialista particular em Godot.
+
+### Instalação (Método Oficial)
+
+A instalação é feita através do NPM (Node Package Manager).
 
 > **Pré-requisito:** Você precisa ter o [Node.js](https://nodejs.org/downloads/) (que inclui o `npm`) instalado no seu sistema.
 
-Copie e execute o comando correspondente ao seu sistema operacional:
+Com o Node.js pronto, abra seu terminal e execute o comando:
+```bash
+npm install -g @cafe-gamedev/gemini
+```
 
-*   **No Windows (abra o PowerShell como Administrador):**
-    ```powershell
-    iwr -useb https://raw.githubusercontent.com/Cafe-GameDev/Cafe-com-Godot/main/install.ps1 | iex
-    ```
-
-*   **No Linux ou macOS:**
-    ```bash
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Cafe-GameDev/Cafe-com-Godot/main/install.sh)"
-    ```
-
-Após a execução, **reinicie seu terminal** para que os novos comandos sejam reconhecidos.
+**Após a instalação, reinicie seu terminal** para que os novos comandos sejam reconhecidos.
 
 ### Comandos Disponíveis
 
 Após a instalação, os seguintes comandos estarão disponíveis em qualquer diretório do seu sistema:
 
 *   `cafe-gemini`
-    *   Inicia uma conversa com o assistente especializado. Use-o para tirar dúvidas, criar código, refatorar sistemas e tudo mais, sempre seguindo os padrões do curso.
-
+    *   Inicia uma conversa com o assistente especializado.
 *   `cafe-gemini-update`
-    *   Atualiza o assistente para a versão mais recente. Ele baixará os manuais e templates mais atuais, garantindo que o `cafe-gemini` tenha sempre o conhecimento mais recente do curso. Execute este comando periodicamente.
+    *   Atualiza o assistente para a versão mais recente, baixando os manuais e templates mais atuais.
 
 ## 🗺️ Trilha de Aprendizagem: Como Navegar no Curso
 
