@@ -13,12 +13,14 @@
 *.stex
 *.exe
 Godot.exe
-TOOLING/
 # Ignore user-specific editor settings.
 .editor/
 project.godot-res_*/
 project.binary
 projetos/
+manuais/
+aulas/
+TOOLING/
 
 # Mono/C# specific ignores (if you ever use it)
 .mono/
