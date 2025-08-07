@@ -12,16 +12,50 @@ Diferente de um curso em vídeo, este repositório **é o próprio curso**. Todo
 *   Desenvolver projetos práticos e completos, passo a passo.
 *   Adquirir uma mentalidade de engenharia de software aplicada a jogos.
 
-## 🚀 A Plataforma de Desenvolvimento Gemini
+## 🚀 Assistente `cafe-gemini`: Seu Especialista em Godot
 
-Uma característica única deste curso é sua integração com o assistente de IA Gemini. Este repositório não é apenas para aprender; é um ambiente de desenvolvimento pré-configurado.
+Uma característica única deste curso é sua integração com um assistente de IA especializado. Ao instalar o `cafe-gemini`, você ganha um parceiro de desenvolvimento que já conhece toda a arquitetura e as boas práticas ensinadas aqui. Ele não é um assistente genérico; ele é um especialista neste curso.
 
-**Como funciona:**
-1.  **Faça um Fork deste repositório:** Isso cria sua própria cópia do projeto.
-2.  **Use o Gemini CLI:** Ao executar o Gemini CLI dentro do seu projeto "forkado", o assistente já terá todo o contexto da arquitetura e das boas práticas do curso.
-3.  **Acelere seu desenvolvimento:** Seja você um aluno seguindo as lições ou um graduado construindo seu próprio jogo, o assistente atuará como um parceiro especialista, ajudando você a implementar sistemas (como Máquinas de Estado, dados baseados em `Resource`, etc.) de acordo com os padrões profissionais ensinados aqui.
+### Instalação (Passo Único)
 
-Essa abordagem transforma o aprendizado em um fluxo de trabalho poderoso e produtivo.
+Para ter acesso ao assistente, clone este repositório e execute o script de instalação correspondente ao seu sistema operacional.
+
+> **Nota:** Você precisa ter o [Git](https://git-scm.com/downloads) instalado no seu sistema.
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/Cafe-GameDev/Cafe-com-Godot.git
+    cd Cafe-com-Godot
+    ```
+
+2.  **Execute o instalador:**
+
+    *   **No Windows (usando PowerShell):**
+        ```powershell
+        .\install.ps1
+        ```
+
+    *   **No Linux ou macOS:**
+        ```bash
+        bash install.sh
+        ```
+
+3.  **Reinicie seu terminal:** Após a instalação, feche e abra seu terminal para que o novo comando seja reconhecido.
+
+### Como Usar
+
+Após a instalação, o comando `cafe-gemini` estará disponível em **qualquer diretório** do seu sistema.
+
+Basta chamá-lo para iniciar uma conversa com o assistente especializado:
+```bash
+cafe-gemini
+```
+
+Ele ajudará você a implementar sistemas (como Máquinas de Estado, dados baseados em `Resource`, etc.) de acordo com os padrões profissionais ensinados no curso, acelerando seu aprendizado e desenvolvimento.
+
+### Como Atualizar
+
+Para garantir que seu assistente tenha acesso aos manuais e templates mais recentes, basta executar novamente o script de instalação dentro da pasta do repositório. Ele irá baixar as atualizações automaticamente.
 
 ## 🗺️ Trilha de Aprendizagem: Como Navegar no Curso
 
