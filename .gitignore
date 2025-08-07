@@ -22,6 +22,7 @@ manuais/
 aulas/
 TOOLING/installers/
 manuais-old/
+cafe-gemini-cli
 
 # Mono/C# specific ignores (if you ever use it)
 .mono/
