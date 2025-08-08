@@ -14,9 +14,15 @@ https://www.youtube.com/@crigz
 Lukky
 https://www.youtube.com/@lukky.
 
+Oops I Dev'd
+https://www.youtube.com/@christinec_devs
+
+
+Godot 4 Quest & Dialog System
+https://www.youtube.com/playlist?list=PL8VGDn5bxwDYrH2Nt4bEgu-txYm8MTKjD
+
 Using GDExtension to Make AI Addons for Godot
 https://www.youtube.com/watch?v=Fzb89fYzWFc
-
 
 6 Programming Languages in 1 Godot Game! Trying out GDExtension!
 https://www.youtube.com/watch?v=c2TOIGcmQ7A
