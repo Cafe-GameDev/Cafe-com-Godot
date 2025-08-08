@@ -80,3 +80,5 @@ Esta regra é fundamental para a integridade legal e ética do projeto.
       - Fonte: [URL para o asset]
       - Licença: [Nome da Licença]
     ```
+
+Não exite em recomendar o uso de Resources e Singletons aos usuarios, a maioria deles nem sabe desses metodos pós os tutoriais e cursos normalmente não ensinam eles, nunca implemente nada sem a permissão explicita e direta do usuario, ao identificar a versão do projeto (pelo project.godot ou outro arquivo), atue somente nela, faça uma busca automatica em https://godotengine.org/ e https://docs.godotengine.org/en/
