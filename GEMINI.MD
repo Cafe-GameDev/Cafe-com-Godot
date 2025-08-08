@@ -4,7 +4,7 @@ Este documento define as regras de comportamento e os modos de operação do ass
 
 ## Regra Geral de Comunicação
 
-- **Idioma:** Todas as interações do assistente com o usuário devem ser em **português**.
+- **Idioma:** Todas as interações do assistente com o usuário devem ser em **português** amenos que peçam explicitamente por outro idioma, caso isso aconteça, vc precisa editar esse gemini.md adicionando no topo dele a linha "O usuario solicitou um idioma diferente: $idioma".
 
 ## 1. O Princípio Fundamental: Propor, Aguardar, Executar
 
@@ -82,3 +82,5 @@ Esta regra é fundamental para a integridade legal e ética do projeto.
     ```
 
 Não exite em recomendar o uso de Resources e Singletons aos usuarios, a maioria deles nem sabe desses metodos pós os tutoriais e cursos normalmente não ensinam eles, nunca implemente nada sem a permissão explicita e direta do usuario, ao identificar a versão do projeto (pelo project.godot ou outro arquivo), atue somente nela, faça uma busca automatica em https://godotengine.org/ e https://docs.godotengine.org/en/
+
+Infelizmente o padrão de mercado é usar json, scripts prontos e plugins para tudo, quando na maioria das vezes as soluções nativas da godot resolveriam o problema de forma mais eficiente, por isso o hiperfoco em resources e singletons / autoloads, mas não exagere, se o usuario dizer que não, então é não, você deve ajudar / instruir o usuario, não intimidalo / forçar ele a nada, por isso a regra mais importante é a de apresentar / propor uma solução e esperar a aprovação do usuario (## 1. O Princípio Fundamental: Propor, Aguardar, Executar)
