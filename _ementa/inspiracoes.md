@@ -1,5 +1,9 @@
-Esse conteudo de inspirações nunca deve diminuir, só aumentar, todos
+Café Gamedev:
+https://github.com/Cafe-GameDev/
+https://www.youtube.com/@CafeGameDev/
 
+Repo Café by Café Gamedev:
+https://github.com/Cafe-GameDev/Repo-Cafe/
 
 Gdquest:
 https://www.youtube.com/@Gdquest
