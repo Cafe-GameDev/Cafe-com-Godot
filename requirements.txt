@@ -1,8 +1,0 @@
-# Dependências para Machine Learning
-onnx
-onnxruntime
-numpy
-
-# Ferramentas de Qualidade de Código
-black
-mypy
