@@ -30,7 +30,7 @@ A instalação é feita através do NPM (Node Package Manager).
 Com o Node.js pronto, abra seu terminal e execute o comando:
 
 ```bash
-npm install -g @cafe-gamedev/gemini
+npm install -g cafe-gemini
 ```
 
 **Após a instalação, reinicie seu terminal** para que os novos comandos sejam reconhecidos.
@@ -92,8 +92,6 @@ Este é um projeto Open Source! Contribuições são muito bem-vindas. Se você 
 
 Este projeto está licenciado sob a Licença APACHE 2.0. Veja o arquivo `LICENSE` para mais detalhes.
 
-
-
 # Café Gemini CLI
 
 Bem-vindo ao Café Gemini, seu **parceiro de desenvolvimento colaborativo** para o ecossistema Godot.
@@ -106,21 +104,24 @@ Ele é, em essência, o Gemini para desenvolvedores Godot, e o melhor de tudo: *
 
 O Café Gemini vem com um conjunto de comandos para agilizar seu desenvolvimento:
 
--   `cafe-gemini` ou `repo-cafe`:
-    -   **Função:** Inicia a sessão de chat com o assistente. `repo-cafe` é um alias para `cafe-gemini`.
-    -   **Uso:** `cafe-gemini`
+- `cafe-gemini` ou `repo-cafe`:
 
--   `cafe-new <nome-do-projeto>`:
-    -   **Função:** Cria um novo projeto Godot a partir do template oficial do "Repo Café", já com estrutura de pastas e o framework de testes (GUT) configurado.
-    -   **Uso:** `cafe-new meu-novo-jogo`
+  - **Função:** Inicia a sessão de chat com o assistente. `repo-cafe` é um alias para `cafe-gemini`.
+  - **Uso:** `cafe-gemini`
 
--   `cafe-gemini-update`:
-    -   **Função:** Atualiza a ferramenta `cafe-gemini` para a versão mais recente. O processo de atualização também garante que sua cópia local do Repo-Café esteja sincronizada com a versão da ferramenta.
-    -   **Uso:** `cafe-gemini-update`
+- `cafe-new <nome-do-projeto>`:
 
--   `repo-update`:
-    -   **Função:** Atualiza especificamente o repositório de conhecimento (Repo-Café), baixando as últimas atualizações dos manuais. É ideal para obter o conteúdo mais recente, que pode ser atualizado com mais frequência do que a ferramenta em si.
-    -   **Uso:** `repo-update`
+  - **Função:** Cria um novo projeto Godot a partir do template oficial do "Repo Café", já com estrutura de pastas e o framework de testes (GUT) configurado.
+  - **Uso:** `cafe-new meu-novo-jogo`
+
+- `cafe-gemini-update`:
+
+  - **Função:** Atualiza a ferramenta `cafe-gemini` para a versão mais recente. O processo de atualização também garante que sua cópia local do Repo-Café esteja sincronizada com a versão da ferramenta.
+  - **Uso:** `cafe-gemini-update`
+
+- `repo-update`:
+  - **Função:** Atualiza especificamente o repositório de conhecimento (Repo-Café), baixando as últimas atualizações dos manuais. É ideal para obter o conteúdo mais recente, que pode ser atualizado com mais frequência do que a ferramenta em si.
+  - **Uso:** `repo-update`
 
 ## Como Funciona?
 
@@ -146,14 +147,14 @@ cafe-gemini
 
 ## Recursos Adicionais
 
--   **Análise de Mídia**: O Gemini pode "ver" e analisar arquivos de imagem e áudio do seu projeto.
--   **Geração de Imagens**: É possível configurar um _Model-Centric Pipeline (MCP)_ para permitir que o Café Gemini gere imagens diretamente pela linha de comando. As instruções estão disponíveis no [repositório oficial do Gemini CLI](https://github.com/google/gemini-cli).
+- **Análise de Mídia**: O Gemini pode "ver" e analisar arquivos de imagem e áudio do seu projeto.
+- **Geração de Imagens**: É possível configurar um _Model-Centric Pipeline (MCP)_ para permitir que o Café Gemini gere imagens diretamente pela linha de comando. As instruções estão disponíveis no [repositório oficial do Gemini CLI](https://github.com/google/gemini-cli).
 
 ## Modo de Operação de Conteúdo (NSFW)
 
 Para garantir total liberdade criativa em projetos destinados a um público adulto, o Café Gemini possui um modo de operação explícito (NSFW).
 
--   **Modo Padrão (SFW):** Por padrão, o assistente opera com as políticas de segurança de conteúdo do Google, evitando temas sensíveis.
--   **Modo Explícito (NSFW):** Se um arquivo chamado `NSFW` (sem extensão) for detectado na raiz do seu projeto, as restrições de conteúdo são suspensas. Isso permite que o assistente colabore na criação de diálogos com linguagem explícita, descrições de violência e outros temas maduros, respeitando a visão criativa do seu projeto.
+- **Modo Padrão (SFW):** Por padrão, o assistente opera com as políticas de segurança de conteúdo do Google, evitando temas sensíveis.
+- **Modo Explícito (NSFW):** Se um arquivo chamado `NSFW` (sem extensão) for detectado na raiz do seu projeto, as restrições de conteúdo são suspensas. Isso permite que o assistente colabore na criação de diálogos com linguagem explícita, descrições de violência e outros temas maduros, respeitando a visão criativa do seu projeto.
 
 Se você solicitar um conteúdo que seria bloqueado, o próprio assistente oferecerá a criação do arquivo `NSFW` para ativar o modo explícito.

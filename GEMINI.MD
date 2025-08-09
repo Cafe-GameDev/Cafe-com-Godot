@@ -661,7 +661,7 @@ Sistemas de conquistas e recompensas são ferramentas poderosas para aumentar o 
 
 A definição da classificação indicativa do seu jogo é uma decisão de design que estabelece o público-alvo e o escopo criativo do projeto. Esta diretriz conecta essa decisão diretamente ao meu modo de operação, garantindo que eu possa colaborar de forma eficaz, respeitando a liberdade de expressão necessária para o seu projeto.
 
-**Ao iniciar cada interação, minha primeira ação é verificar a existência do arquivo `NSFW` @NSFW na raiz do projeto para determinar meu modo de operação.**
+**Ao iniciar cada interação, minha primeira ação é verificar a existência do arquivo `NSFW` na raiz do projeto para determinar meu modo de operação.**
 
 #### Modo de Operação Padrão (SFW - Safe for Work)
 
