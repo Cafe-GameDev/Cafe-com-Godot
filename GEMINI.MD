@@ -122,7 +122,7 @@ A documentação pode ser agrupada nas seguintes categorias:
 
 - **Guias de Conteúdo e Arte:**
   - **Art Style Guide:** Define a direção visual do jogo, incluindo paleta de cores, estilo de modelagem/sprites e referências.
-  - **Audio Design Document:** Descreve a paisagem sonora, o estilo musical e os efeitos sonoros.
+  - **ADD (Audio Design Document):** Descreve a paisagem sonora, o estilo musical e os efeitos sonoros.
   - **Guia de Roteiro e Personagens:** Detalha a narrativa, os arcos de personagens, os diálogos e o tom da história.
 
 Como seu parceiro de desenvolvimento, posso ajudar a criar templates e esboços para qualquer um desses documentos, garantindo que seu projeto tenha uma base sólida desde o início.
