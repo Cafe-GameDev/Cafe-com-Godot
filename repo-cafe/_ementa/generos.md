@@ -68,6 +68,11 @@ A visão é a partir dos olhos do personagem, promovendo alta imersão.
 3.  **Aventura / Puzzle:** Foco em exploração e resolução de quebra-cabeças. Ex: *Portal 2*.
 4.  **Terror (Survival Horror):** A perspectiva limitada aumenta a tensão. Ex: *Resident Evil 7*.
 5.  **Walking Simulator:** Foco na narrativa e exploração, com pouca interação mecânica. Ex: *What Remains of Edith Finch*.
+6.  **Looter Shooter:** Combina tiro em primeira pessoa com elementos de RPG, como coleta de loot e progressão de personagem. Ex: *Borderlands*.
+7.  **Arena Shooter:** Foco em combate rápido e frenético em arenas fechadas. Ex: *Quake III Arena*.
+8.  **Tactical Shooter:** Simulações de combate realistas com foco em estratégia e trabalho em equipe. Ex: *Rainbow Six Siege*.
+9.  **Survival (First-Person):** Foco em sobrevivência em ambientes hostis, com coleta de recursos e construção. Ex: *Rust*.
+10.  **Hero Shooter:** Combate baseado em equipes com personagens que possuem habilidades únicas. Ex: *Overwatch*.
 
 ### Subtópico: Perspectiva em Terceira Pessoa
 
@@ -80,6 +85,9 @@ A câmera segue o personagem, permitindo visão do personagem e do ambiente.
 4.  **Stealth (Furtividade):** O objetivo é evitar a detecção. Ex: *Metal Gear Solid V*.
 5.  **Soulslike:** Subgênero de RPG de ação com alta dificuldade, combate metódico e narrativa ambiental. Ex: *Dark Souls*, *Bloodborne*.
 6.  **Character Action / Spectacle Fighter:** Combate estiloso e exagerado focado em combos complexos. Ex: *Devil May Cry 5*.
+7.  **Battle Royale:** Grande número de jogadores lutando para ser o último sobrevivente em um mapa que encolhe. Ex: *Fortnite*, *PUBG*.
+8.  **Cover-Based Shooter:** Tiro em terceira pessoa com foco em usar cobertura para se proteger de ataques inimigos. Ex: *Gears of War*.
+9. **Hack and Slash (3D):** Combate corpo a corpo rápido contra múltiplos inimigos, com foco em combos e habilidades. Ex: *God of War*.
 
 ### Subtópico: Perspectiva Isométrica / Top-Down 3D
 
@@ -91,6 +99,10 @@ A câmera tem uma visão angular e distante, oferecendo uma visão tática.
 3.  **RTS (Real-Time Strategy):** Gerenciamento de base e exércitos em tempo real. Ex: *StarCraft II*.
 4.  **MOBA (Multiplayer Online Battle Arena):** Batalhas de equipe 5v5 em um mapa definido. Ex: *League of Legends*.
 5.  **Simulação / Gerenciamento:** Construção de cidades, parques, etc. Ex: *Cities: Skylines*.
+6.  **Tactical RPG:** RPGs com combate baseado em turnos em um grid tático. Ex: *Final Fantasy Tactics*.
+7.  **Dungeon Crawler (Isométrico):** Exploração de masmorras com foco em combate e coleta de tesouros. Ex: *Pillars of Eternity*.
+8.  **City Builder:** Construção e gerenciamento de cidades. Ex: *SimCity*.
+9.  **Grand Strategy (3D):** Estratégia em larga escala com foco em gestão de impérios e diplomacia em um mapa 3D. Ex: *Europa Universalis IV*.
 
 ---
 
