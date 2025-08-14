@@ -14,30 +14,30 @@ O Repo Café CLI vem com um conjunto de comandos para agilizar seu desenvolvimen
     -   **Função:** Inicia a sessão de chat com o assistente.
     -   **Uso:** `repo-cafe`
 
--   `Café-new [template] <nome-do-projeto>`:
+-   `cafe-new [template] <nome-do-projeto>`:
     -   **Função:** Te serve um novo "Café Quentinho" (um projeto Godot com base nos templates do Café).
     -   **Argumentos:**
         -   `template` (opcional): Especifique `platformer` ou `topdown`. Se não especificar, o template `headless` (apenas com sistemas essenciais) será usado.
     -   **Exemplos de Uso:**
-        -   `Café-new meu-projeto` (usa o template headless)
-        -   `Café-new platformer meu-jogo-plataforma`
-        -   `Café-new topdown meu-jogo-topdown`
+        -   `cafe-new meu-projeto` (usa o template headless)
+        -   `cafe-new platformer meu-jogo-plataforma`
+        -   `cafe-new topdown meu-jogo-topdown`
 
 -   `repo-cafe-update`:
-    -   **Função:** Atualiza a ferramenta `repo-cafe` para a versão mais recente. O processo de atualização também garante que sua cópia local do Repo-Café esteja sincronizada com a versão da ferramenta.
+    -   **Função:** Atualiza a ferramenta `repo-cafe` para a versão mais recente. O processo de atualização também garante que sua cópia local do repo-cafe esteja sincronizada com a versão da ferramenta.
     -   **Uso:** `repo-cafe-update`
 
 -   `repo-update`:
-    -   **Função:** Atualiza especificamente o repositório de conhecimento (Repo-Café), baixando as últimas atualizações dos manuais. É ideal para obter o conteúdo mais recente, que pode ser atualizado com mais frequência do que a ferramenta em si.
+    -   **Função:** Atualiza especificamente o repositório de conhecimento. É ideal para obter o conteúdo mais recente, que pode ser atualizado com mais frequência do que a ferramenta em si.
     -   **Uso:** `repo-update`
 
--   `Café-rename`:
+-   `cafe-rename`:
     -   **Função:** Renomeia arquivos e pastas recursivamente para um formato limpo e consistente, ideal para Godot e sistemas de controle de versão. Preserva maiúsculas/minúsculas e hífens, mas troca espaços por `_` e remove acentos/caracteres especiais.
-    -   **Uso:** `Café-rename --source <caminho-opcional>`
+    -   **Uso:** `cafe-rename --source <caminho-opcional>`
 
 ## Como Funciona?
 
-O Repo Café CLI é um wrapper inteligente para o `gemini-cli` do Google. Ele utiliza o repositório [Repo Café](https://github.com/Café-GameDev/Repo-Café) — um curso completo de Godot em formato de texto — como uma base de conhecimento fixa. É o nosso grão especial, sempre moído na hora para o seu projeto, garantindo um aroma único em cada linha de código.
+O Repo Café CLI é um wrapper inteligente para o `gemini-cli` do Google. Ele utiliza o repositório [Repo Café](https://github.com/Café-GameDev/repo-cafe) — um curso completo de Godot em formato de texto — como uma base de conhecimento fixa. É o nosso grão especial, sempre moído na hora para o seu projeto, garantindo um aroma único em cada linha de código.
 
 ## Instalação
 
