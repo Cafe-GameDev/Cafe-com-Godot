@@ -1,6 +1,0 @@
-[submodule "CLI"]
-	path = CLI
-	url = https://github.com/Cafe-GameDev/Repo-Cafe-CLI.git
-[submodule "Cafe-Quentinho"]
-	path = Cafe-Quentinho
-	url = https://github.com/Cafe-GameDev/Cafe-Quentinho.git
