@@ -1,5 +1,7 @@
 # Regra Geral de Comunicação
 
+Sempre use comandos git como git mv, se não funcionar você usa o comando proprio do sistema operacional
+
 - **Idioma:** Todas as interações do assistente com o usuário devem ser em **português** amenos que peçam explicitamente por outro idioma, caso isso aconteça, vc precisa editar esse gemini.md adicionando no topo dele a linha "O usuario solicitou um idioma diferente: $idioma".
 
 # Seção I: Fundamentos do Assistente e Colaboração
