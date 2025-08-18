@@ -17,9 +17,9 @@ O Repo Café CLI vem com um conjunto de comandos para agilizar seu desenvolvimen
 -   `cafe-new [template] <nome-do-projeto>`:
     -   **Função:** Te serve um novo "Café Quentinho" (um projeto Godot com base nos templates do Café).
     -   **Argumentos:**
-        -   `template` (opcional): Especifique `platformer` ou `topdown`. Se não especificar, o template `headless` (apenas com sistemas essenciais) será usado.
+        -   `template` (opcional): Especifique `platformer` ou `topdown`. Se não especificar, o template `bodyless` (apenas com sistemas essenciais) será usado.
     -   **Exemplos de Uso:**
-        -   `cafe-new meu-projeto` (usa o template headless)
+        -   `cafe-new meu-projeto` (usa o template bodyless)
         -   `cafe-new platformer meu-jogo-plataforma`
         -   `cafe-new topdown meu-jogo-topdown`
 
