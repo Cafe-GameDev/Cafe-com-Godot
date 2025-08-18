@@ -12,7 +12,7 @@ Cada projeto é projetado para aplicar, reforçar e expandir os conceitos de arq
 - **Conceito:** Em vez de construir um jogo completo, este módulo foca na criação de uma "sandbox" ou "laboratório de testes". É um ambiente interativo onde cada aula adiciona um novo sistema de jogo modular. Esta abordagem espelha o processo de desenvolvimento profissional, onde sistemas são prototipados e testados de forma isolada.
 - **Gênero e Perspectiva:** Ação Top-Down.
 - **Sistemas Centrais a Serem Aplicados:**
-  - **Arquitetura Fundamental:** Estrutura de Autoloads (`GameManager`, `SceneManager`, `AudioManager`), Arquitetura com `Resource` (`WeaponData`, `EnemyData`), Máquina de Estados (FSM) para inimigos, Sistema de Save/Load.
+  - **Arquitetura Fundamental:** Estrutura de Autoloads (`GlobalMachine`, `SceneManager`, `AudioManager`), Arquitetura com `Resource` (`WeaponData`, `EnemyData`), Máquina de Estados (FSM) para inimigos, Sistema de Save/Load.
   - **Gameplay e Jogador:** Sistema de UI (HUD, Menus), Sistema de Combate (Hitbox/Hurtbox com `AttackData`), Feedback de Dano (`FloatingTextManager`), Sistema de Loot (`LootTable`), Sistema de Interação, Sistema de Diálogo (básico), Sistema de Missões (básico).
   - **Assets e Polimento:** "Juice" (Camera Shake, Partículas), Animação com `AnimationPlayer` e `AnimationTree`, Áudio Espacial (`AudioStreamPlayer2D`).
 - **Foco de Aprendizagem:** Dominar a implementação da arquitetura de software principal do curso. Entender na prática como sistemas desacoplados (Player, Inimigo, UI, Loot) se comunicam através de Sinais e Autoloads. Construir uma base de código robusta e reutilizável para os desafios futuros.

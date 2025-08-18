@@ -59,6 +59,6 @@ func load_game():
 
 ## Boas Práticas
 
-*   **`SaveManager` Singleton:** Crie um script AutoLoad para centralizar toda a sua lógica de save e load.
+*   **`SaveSystem` Singleton:** Crie um script AutoLoad para centralizar toda a sua lógica de save e load.
 *   **JSON como Alternativa:** Para um formato de save legível por humanos, você pode converter seu dicionário para uma string JSON com `JSON.stringify()` e salvá-la com `file.store_string()`.
 *   **Criptografia:** Para dificultar a edição dos saves pelos jogadores, use `FileAccess.open_encrypted_with_pass()` para uma camada simples de segurança.

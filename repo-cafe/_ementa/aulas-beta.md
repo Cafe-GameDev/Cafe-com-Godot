@@ -38,62 +38,62 @@ Esta ementa detalha a estrutura completa do curso, organizada em quatro ciclos d
 
 ---
 
-## Ciclo 1: Fundamentos Top-Down (Módulos 01-03)
+## Ciclo 1: Fundamentos da Arquitetura Desacoplada (Módulos 01-03)
 
-**Objetivo:** Dominar os conceitos essenciais da Godot Engine e do desenvolvimento 2D através da perspectiva Top-Down.
+**Objetivo:** Dominar a arquitetura "BodyLess" e os conceitos essenciais da Godot através da perspectiva Top-Down. O aluno aprenderá desde o início a construir sistemas modulares, escaláveis e de fácil manutenção.
 
-### Módulo 01 (Teórico): Fundamentos da Godot
-- **Aula 01:** Introdução à Godot: Instalação, interface e filosofia.
-- **Aula 02:** Nós e Cenas: A base da organização de projetos.
-- **Aula 03:** GDScript: Lógica de programação para jogos.
-- **Aula 04:** Input e Movimento: Capturando a entrada do jogador.
-- **Aula 05:** Físicas 2D: `CharacterBody2D` vs. `RigidBody2D`.
-- **Aula 06:** Detecção de Colisão: `Area2D` e `RayCast2D`.
-- **Aula 07:** UI Básica: Criando menus e HUDs.
-- **Aula 08:** Áudio: `AudioStreamPlayer` para som e música.
+### Módulo 01 (Teórico): Os Pilares da Arquitetura "BodyLess"
+- **Aula 01:** Filosofia Godot e Desacoplamento: Composição sobre Herança.
+- **Aula 02:** Nós, Cenas e a Estrutura de Árvore.
+- **Aula 03:** GDScript e Dicionários: A base para estruturas de dados flexíveis.
+- **Aula 04:** `Resource` como Contêiner de Dados: Criando a base do Design Orientado a Dados.
+- **Aula 05:** Sinais e o Padrão Observer: A base da comunicação local.
+- **Aula 06:** O EventBus (Autoload): Expandindo Sinais para uma comunicação global e desacoplada.
+- **Aula 07:** Autoloads como Gerenciadores Ouvintes: Criando sistemas que reagem a eventos em vez de serem chamados diretamente.
+- **Aula 08:** O Fluxo Completo: Input -> EventBus -> Manager -> Atualização de Estado -> UI Reativa.
 
-### Módulo 02 (Prático): Construção do Laboratório de Mecânicas Top-Down
-- **Aula 01:** Criando o Player: Movimento em 8 direções.
-- **Aula 02:** Sistema de Câmera: `Camera2D` e limites.
-- **Aula 03:** Inimigos Simples: Patrulha e perseguição.
-- **Aula 04:** Combate Básico: Ataque corpo a corpo e projéteis.
-- **Aula 05:** Coletáveis: Moedas, vida e power-ups.
-- **Aula 06:** Gerenciador de Jogo: Controlando o estado do jogo (Singleton).
+### Módulo 02 (Prático): Construindo o Laboratório com a Arquitetura "BodyLess"
+- **Aula 01:** Criando o Player: Movimento e emissão do evento `player_moved` com um dicionário de dados (velocidade, posição).
+- **Aula 02:** Sistema de Câmera: A câmera ouve o evento `player_moved` para seguir o jogador.
+- **Aula 03:** Inimigos Simples (Orientados a Dados): Um `Enemy.tscn` que usa um `EnemyData.tres` (Resource) para definir seu comportamento.
+- **Aula 04:** Combate Desacoplado: Player emite `attack_action` no EventBus. `CombatManager` ouve, processa a lógica usando `WeaponData.tres` e emite `enemy_damaged`. O Inimigo ouve o evento e atualiza sua vida.
+- **Aula 05:** Coletáveis e Eventos: A Moeda, ao ser coletada, emite `item_collected` no EventBus. `InventoryManager` ouve e atualiza o inventário, que por sua vez emite `inventory_changed`.
+- **Aula 06:** HUD Reativa: A HUD ouve os eventos `inventory_changed` e `player_health_changed` para se atualizar, sem nunca ter uma referência direta ao Player ou ao Inventário.
 
-### Módulo 03 (Desafio): Escolha seu Jogo Top-Down
-O aluno aplica os conceitos do Módulo 02 em um dos seguintes projetos:
-- **Opção A: Sobrevivência em Arena (*Vampire Survivors*-like):** Foco em spawners de inimigos, coleta de XP e upgrades passivos.
-- **Opção B: Aventura e Puzzle (*Zelda*-like):** Foco em exploração, interação com objetos (chaves, portas) e puzzles simples.
-- **Opção C: Ação em Nave Espacial (*Asteroids*-like):** Foco em física de `RigidBody2D`, inércia, e combate em 360 graus.
+### Módulo 03 (Desafio): Escolha seu Jogo Top-Down (Arquitetura Obrigatória)
+O aluno aplica a arquitetura "BodyLess" em um dos seguintes projetos:
+- **Opção A: Sobrevivência em Arena (*Vampire Survivors*-like):** Foco em sistemas de Spawner e Upgrades que reagem a eventos globais.
+- **Opção B: Aventura e Puzzle (*Zelda*-like):** Foco em interações de objetos via EventBus (ex: `pressure_plate_activated`, `door_unlocked`).
+- **Opção C: Ação em Nave Espacial (*Asteroids*-like):** Foco em física e comunicação de estado via eventos para power-ups e inimigos.
 
 ---
 
-## Ciclo 2: Aprofundamento com Plataforma e Sistemas de RPG (Módulos 04-06)
+## Ciclo 2: Aprofundamento com Plataforma e Sistemas de Jogo Escaláveis (Módulos 04-06)
 
-**Objetivo:** Construir um jogo de plataforma complexo e dominar sistemas de dados reutilizáveis, como inventário e missões.
+**Objetivo:** Aprofundar a aplicação da arquitetura "BodyLess" em um jogo de plataforma complexo, dominando sistemas de dados reutilizáveis e avançados.
 
-### Módulo 04 (Teórico): Sistemas de Dados e Progressão
-- **Aula 01:** Arquitetura com `Resource`: Criando dados desacoplados.
-- **Aula 02:** Sistema de Inventário e Loot.
-- **Aula 03:** Sistema de Diálogo e Missões.
-- **Aula 04:** Sistema de Lojas e Economia.
-- **Aula 05:** Níveis, XP e Progressão de Personagem.
-- **Aula 06:** Animações Avançadas: `AnimationPlayer` e `AnimationTree`.
+### Módulo 04 (Teórico): Aprofundando a Arquitetura: Sistemas Escaláveis
+- **Aula 01:** Arquitetura Avançada de Inventário: `ItemData` (Resource), slots e comunicação 100% via eventos.
+- **Aula 02:** Tabelas de Loot (Resources): Desacoplando os drops dos inimigos.
+- **Aula 03:** Máquinas de Estado (FSM) Desacopladas: Como os estados podem emitir e reagir a eventos do EventBus.
+- **Aula 04:** Arquitetura de Sistemas de Diálogo e Missões baseada em eventos e Resources.
+- **Aula 05:** Padrões para Lojas e Economia: Transações via eventos para máxima segurança e desacoplamento.
+- **Aula 06:** `AnimationTree` e Sincronização com Eventos: Usando `Call Method Tracks` para emitir sinais no EventBus em pontos chave da animação.
 
 ### Módulo 05 (Prático): Jogo de Plataforma e Mineração (*Dome Keeper*-like)
-- **Aula 01:** Controlador de Plataforma: Pulo, gravidade e movimento preciso.
-- **Aula 02:** Mecânica de Mineração: `TileMap` destrutível.
-- **Aula 03:** Sistema de Ondas de Inimigos.
-- **Aula 04:** Coleta de Recursos e Upgrades (usando os `Resources` do Módulo 04).
-- **Aula 05:** Defesa da Base: Torreta e combate.
+- **Aula 01:** Controlador de Plataforma Robusto.
+- **Aula 02:** Mineração com `TileMap` e Eventos: Emite `resource_mined` com um dicionário do recurso coletado.
+- **Aula 03:** Sistema de Ondas de Inimigos: Um `WaveManager` que emite eventos como `wave_started` e `enemy_spawned`.
+- **Aula 04:** Upgrades Orientados a Dados: A tela de upgrade lê `UpgradeData.tres` e, ao comprar, emite `upgrade_purchased` para os sistemas relevantes ouvirem.
+- **Aula 05:** Defesa da Base: Torreta reage a eventos de `enemy_detected` e se comunica via EventBus.
 
-### Módulo 06 (Desafio Cumulativo): Escolha seu Jogo
-O aluno aplica os conceitos de plataforma E os sistemas de RPG/gerenciamento em um dos seguintes projetos:
-- **Opção A: Plataforma de Precisão (*Celeste*-like):** Foco em level design desafiador e mecânicas de movimento avançadas (dash, wall jump).
-- **Opção B: Metroidvania Compacto:** Foco em level design interconectado, onde itens de inventário funcionam como chaves para novas áreas.
-- **Opção C: Simulador de Fazenda Top-Down:** Revisa a mecânica Top-Down, mas com foco total nos sistemas de gerenciamento (inventário, crafting, ciclo dia/noite).
-- **Opção D: Roguelike de Exploração de Dungeon Top-Down:** Foco em geração procedural de salas, loot, upgrades permanentes e combate tático.
-- **Opção E: Aventura Isométrica 2.5D:** Desafio avançado para adaptar a lógica Top-Down a uma perspectiva isométrica, lidando com `TileMap` isométrico e Y-Sort.
+### Módulo 06 (Desafio Cumulativo): Escolha seu Jogo (Arquitetura Obrigatória)
+O aluno aplica a arquitetura "BodyLess" em cenários mais complexos:
+- **Opção A: Plataforma de Precisão (*Celeste*-like):** Foco em estados de personagem complexos gerenciados por uma FSM desacoplada.
+- **Opção B: Metroidvania Compacto:** Onde o `InventoryManager`, ao receber um novo item, emite um evento `ability_unlocked` que o Player ouve para ganhar novas habilidades.
+- **Opção C: Simulador de Fazenda Top-Down:** Foco total em sistemas de gerenciamento (inventário, crafting, tempo) que operam exclusivamente via eventos.
+- **Opção D: Roguelike de Exploração de Dungeon Top-Down:** Foco em geração procedural que emite eventos (`room_entered`) para que outros sistemas (IA, Spawners) possam reagir.
+- **Opção E: Aventura Isométrica 2.5D:** Desafio avançado para adaptar a arquitetura a uma perspectiva isométrica.
 
 ---
 

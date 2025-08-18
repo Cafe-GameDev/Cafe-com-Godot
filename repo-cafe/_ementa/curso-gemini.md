@@ -56,7 +56,7 @@ Este documento detalha a estrutura do curso focado na instalação e uso do Gemi
     *   Exemplos de modelagem de dados para itens, inimigos, etc.
 *   **Aula 4.2: Gerenciando Sistemas Globais (Autoloads)**
     *   Utilizando o assistente para estruturar e modificar Singletons.
-    *   Exemplos com `AudioManager`, `SceneManager`, `SaveManager`.
+    *   Exemplos com `AudioManager`, `SceneManager`, `SaveSystem`.
 *   **Aula 4.3: Implementando Máquinas de Estado (FSMs)**
     *   Como o assistente pode auxiliar na criação de FSMs para personagens e IAs.
     *   Geração de estados e transições.

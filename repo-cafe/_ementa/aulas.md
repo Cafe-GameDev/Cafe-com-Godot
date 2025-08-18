@@ -382,7 +382,52 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
     - **Objetivo de Aprendizagem:** O aluno deve ser capaz de modelar os dados de seu jogo usando `Resource`s customizados, criando uma arquitetura mais flexível e escalável.
     - **Exercício Prático Sugerido:** Criar um `EnemyData.gd` que herda de `Resource` com stats como `health`, `speed`, `damage`. Criar dois arquivos: `slime.tres` e `goblin.tres`, com valores diferentes. Criar uma cena de inimigo cujo script tem `@export var data: EnemyData` e usa esses valores na sua lógica.
 
-  - **1.9: Construção de UI: O Sistema de Layout Retido**
+  - **1.9: Dicionários (Dictionary): A Arquitetura de Dados Desacoplada**
+    - **Conceito Central:** Apresentar o Dicionário como o padrão fundamental para a **estrutura e transporte de dados** na arquitetura "BodyLess". Ele funciona como um contêiner universal e flexível, similar a um banco de dados NoSQL, que transporta informações através do EventBus e forma a base do sistema de salvamento.
+    - **Tópicos a Cobrir:**
+        - Revisão da sintaxe: `var dados = {"chave": valor}`.
+        - Acesso, modificação e verificação de existência de chaves (`.has()`).
+        - Aninhamento de dicionários para criar estruturas de dados complexas.
+        - O Dicionário como "contrato de dados" entre sistemas: em vez de trocar referências a objetos, sistemas trocam dicionários com dados primitivos.
+        - Exemplo prático: um sinal `settings_changed` que emite um dicionário apenas com a informação que mudou, ex: `{"audio": {"music_volume": 0.8}}`.
+    - **Objetivo de Aprendizagem:** O aluno deve entender como usar Dicionários para desacoplar a lógica de estado da sua representação, tratando-os como a principal forma de comunicação de dados.
+    - **Exercício Prático Sugerido:** Criar uma função que recebe um dicionário de `stats` de um personagem. A função deve verificar se a chave `"vida"` existe e, se existir, aplicar um valor de cura, retornando o dicionário modificado.
+
+  - **1.10: EventBus: A Espinha Dorsal da Comunicação Desacoplada**
+    - **Conceito Central:** Implementar o padrão **EventBus** (uma aplicação global do padrão Observer/Sinais) como a ferramenta central para a comunicação entre diferentes partes do jogo. O EventBus é um "quadro de avisos" (Autoload) que permite que sistemas se comuniquem sem se conhecerem diretamente.
+    - **Tópicos a Cobrir:**
+        - Criação do Autoload `GlobalEvents`.
+        - Diferença conceitual entre eventos globais (`GlobalEvents`) e locais (sinais de um nó específico).
+        - Como o EventBus quebra referências diretas: um nó A não chama uma função no nó B; ele emite um sinal no EventBus, e o nó B reage a esse sinal.
+        - Passando dicionários como carga útil (payload) dos eventos.
+    - **Objetivo de Aprendizagem:** O aluno deve ser capaz de implementar e utilizar um EventBus para criar uma arquitetura de comunicação robusta e desacoplada.
+    - **Exercício Prático Sugerido:** Refatorar o exercício da Aula 1.7. Em vez de conectar o sinal `pressed` do `Button` diretamente a uma função, o `Button` deve emitir um sinal no `GlobalEvents`. O script pai agora ouve o `GlobalEvents` para executar a ação.
+
+  - **1.11: O Princípio do Desacoplamento na Prática**
+    - **Conceito Central:** Unificar os conceitos de `Resource`, Dicionário e EventBus para explicar o princípio do **desacoplamento** como a filosofia central da arquitetura "BodyLess". O objetivo é criar sistemas independentes, modulares e testáveis.
+    - **Tópicos a Cobrir:**
+        - Revisão dos papéis: `Resource` (contêiner de dados), Dicionário (transportador de dados), EventBus (comunicador de eventos).
+        - Análise de um fluxo completo:
+            1.  Um nó de UI (um `Slider`) emite um sinal no `GlobalEvents` com um Dicionário (`{"audio": ...}`).
+            2.  Um `Manager` (Autoload, ex: `SettingsManager`) ouve esse sinal.
+            3.  O `Manager` atualiza seu estado interno (que pode ser um `Resource` ou um Dicionário).
+            4.  O `Manager` emite outro sinal (`settings_saved`) para notificar outros sistemas.
+        - Vantagens: Cenas e sistemas podem ser desenvolvidos e testados isoladamente. A UI não precisa saber da existência do `SettingsManager`, e vice-versa.
+    - **Objetivo de Aprendizagem:** O aluno deve ser capaz de articular o que é desacoplamento e como os diferentes padrões da Godot (Sinais, Resources) podem ser combinados para alcançá-lo.
+    - **Exercício Prático Sugerido:** Desenhar um diagrama de fluxo em papel ou em uma ferramenta online, mostrando como um sistema de "Coleta de Moedas" funcionaria de forma desacoplada: Player colide com Moeda -> Moeda emite sinal no EventBus com seu valor -> `GlobalMachine` ouve o sinal e atualiza o score -> `GlobalMachine` emite sinal `score_updated` -> HUD ouve o sinal e atualiza o texto.
+
+  - **1.12: Internacionalização (I18N): Conteúdo Desacoplado da Lógica**
+    - **Conceito Central:** Apresentar o sistema de Internacionalização (I18N) da Godot como um exemplo prático de desacoplamento entre o **conteúdo de texto** e a **lógica da interface**. A UI se torna agnóstica ao idioma.
+    - **Tópicos a Cobrir:**
+        - Configuração de traduções no projeto (arquivos `.csv` ou `.po`).
+        - O `TranslationServer` como o Singleton que gerencia o idioma ativo.
+        - A abordagem "BodyLess": usar **chaves de tradução** (ex: `UI_NEW_GAME`) diretamente na propriedade `text` dos nós no editor.
+        - Como o `TranslationServer` substitui automaticamente as chaves pelo texto correto.
+        - Uso da função `tr()` para texto dinâmico que precisa de placeholders.
+    - **Objetivo de Aprendizagem:** O aluno deve ser capaz de implementar um sistema de múltiplos idiomas onde a UI não contém nenhum texto "hardcoded", facilitando a localização.
+    - **Exercício Prático Sugerido:** Criar um arquivo de tradução simples com chaves para "New Game" e "Options" em português e inglês. Criar uma cena de menu com dois `Button`s usando essas chaves. Adicionar um terceiro botão que troca o idioma em tempo de execução (`TranslationServer.set_locale(...)`) e observar a atualização automática dos outros botões.
+
+  - **1.13: Construção de UI: O Sistema de Layout Retido**
 
     - **Conceito Central:** Explicar os Nós `Control` como os componentes de um **sistema de GUI de modo retido (retained mode)**. O foco será nos Nós `Container`, que são controladores de layout que executam algoritmos específicos (box layout, grid layout) para organizar seus filhos automaticamente, permitindo a criação de interfaces responsivas que se adaptam a diferentes resoluções e aspect ratios.
     - **Tópicos a Cobrir:**
@@ -393,7 +438,7 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
     - **Objetivo de Aprendizagem:** O aluno deve ser capaz de construir interfaces de usuário que se adaptam a diferentes tamanhos de tela, utilizando os algoritmos de layout dos containers.
     - **Exercício Prático Sugerido:** Criar um HUD para um jogo. Usar um `MarginContainer` para as bordas, um `HBoxContainer` no topo para informações como Vidas e Pontos, e um `VBoxContainer` no canto para um minimapa ou lista de quests.
 
-  - **1.10: Sistemas de Animação: Keyframing e Máquinas de Estado**
+  - **1.14: Sistemas de Animação: Keyframing e Máquinas de Estado**
 
     - **Conceito Central:** Apresentar o `AnimatedSprite2D` como uma simples máquina de estados para animações de sprite. O `AnimationPlayer` será introduzido como um poderoso **motor de tweening e keyframing genérico**, capaz de interpolar qualquer propriedade de qualquer Nó ao longo do tempo. Ele é uma ferramenta de automação de sequências, não apenas de animação visual, podendo chamar métodos, emitir sinais e até animar shaders.
     - **Tópicos a Cobrir:**
@@ -404,7 +449,7 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
     - **Objetivo de Aprendizagem:** O aluno deve ser capaz de usar ambas as ferramentas para criar animações de personagem e de interface, e sincronizar eventos de gameplay com as animações.
     - **Exercício Prático Sugerido:** Criar uma animação de ataque em um `AnimationPlayer` que move um `Sprite2D` para frente e para trás. Adicionar uma "Call Method Track" que chama uma função `deal_damage` no meio da animação.
 
-  - **1.11: Timers e Áudio: Agendamento de Eventos e Espacialização**
+  - **1.15: Timers e Áudio: Agendamento de Eventos e Espacialização**
 
     - **Conceito Central:** Apresentar o `Timer` como uma abstração para o **agendamento de eventos assíncronos**, utilizando o padrão Observer (sinal `timeout`) para notificar a conclusão. Os nós de áudio serão diferenciados pelo conceito de **espacialização**: `AudioStreamPlayer` para áudio global (não-posicional, como música de fundo) e `AudioStreamPlayer2D/3D` para áudio diegético (posicional, como o som de um passo), cuja percepção depende da sua posição no espaço do jogo.
     - **Tópicos a Cobrir:**
@@ -414,9 +459,9 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
     - **Objetivo de Aprendizagem:** O aluno deve ser capaz de usar timers para lógicas baseadas em tempo e implementarmos áudio de forma eficaz, compreendendo os diferentes nós de áudio e seus casos de uso.
     - **Exercício Prático Sugerido:** Criar um spawner de inimigos que usa um `Timer` repetitivo. A cada `timeout`, ele instancia uma cena de inimigo. Adicionar um `AudioStreamPlayer2D` na cena do inimigo para que ele emita um som que pode ser ouvido de perto.
 
-  - **Aula 1.12: A `SceneTree` e Sistemas Globais (Autoloads e Grupos)**
+  - **Aula 1.16: A `SceneTree` e Sistemas Globais (Autoloads e Grupos)**
 
-    - **Conceito Central:** Apresentar a `SceneTree` como a classe que gerencia a hierarquia de nós em tempo de execução e o fluxo principal do jogo. Introduzir o padrão de design **Singleton** e sua implementação em Godot, o **Autoload**, como a solução padrão para gerenciar estado e sistemas globais (ex: `GameManager`, `AudioManager`). Apresentar o sistema de **Grupos** como uma ferramenta de desacoplamento para comunicação e gerenciamento de coleções de nós.
+    - **Conceito Central:** Apresentar a `SceneTree` como a classe que gerencia a hierarquia de nós em tempo de execução e o fluxo principal do jogo. Introduzir o padrão de design **Singleton** e sua implementação em Godot, o **Autoload**, como a solução padrão para gerenciar estado e sistemas globais (ex: `GlobalMachine`, `AudioManager`). Apresentar o sistema de **Grupos** como uma ferramenta de desacoplamento para comunicação e gerenciamento de coleções de nós.
     - **Tópicos a Cobrir:**
       - A `SceneTree`: o que é e seu papel no loop do jogo (`get_tree()`).
       - Pausar o jogo (`get_tree().paused`).
@@ -427,7 +472,7 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
     - **Objetivo de Aprendizagem:** O aluno deve ser capaz de estruturar a arquitetura de gerenciamento do seu jogo, sabendo quando e por que usar um Autoload e como utilizar Grupos para gerenciar coleções de objetos.
     - **Exercício Prático Sugerido:** Criar um Autoload `Global.gd` que mantém uma variável `score`. Criar uma cena de "moeda" que, ao ser coletada, adiciona-se ao grupo "coins" e chama `Global.add_score()`. Criar um botão na UI que, ao ser pressionado, chama `get_tree().call_group("coins", "queue_free")` para remover todas as moedas da tela.
 
-  - **Aula 1.13: Construção de Mundos com `TileMap`**
+  - **Aula 1.17: Construção de Mundos com `TileMap`**
 
     - **Conceito Central:** Apresentar o sistema de `TileMap` como a principal ferramenta para o design de níveis 2D, permitindo a construção rápida e eficiente de layouts complexos a partir de um `TileSet`.
     - **Tópicos a Cobrir:**
@@ -439,7 +484,7 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
     - **Objetivo de Aprendizagem:** O aluno será capaz de criar um `TileSet` funcional a partir de uma folha de sprites e usar o `TileMap` para construir um nível 2D com colisões físicas.
     - **Exercício Prático Sugerido:** Usando um asset de tileset simples (um quadrado para parede e um para chão), criar um `TileSet`, configurar a colisão para a parede, e construir uma pequena sala fechada com um `TileMap`. Colocar um `CharacterBody2D` dentro para testar as colisões.
 
-  - **Aula 1.14: Câmeras 2D e Viewports**
+  - **Aula 1.18: Câmeras 2D e Viewports**
 
     - **Conceito Central:** Detalhar o funcionamento da `Camera2D` como a janela do jogador para o mundo do jogo. Explicar suas propriedades essenciais para criar uma experiência visual profissional e polida. Introduzir o `SubViewport` como uma técnica para renderizar uma parte do jogo em uma textura (ex: para um minimapa).
     - **Tópicos a Cobrir:**
@@ -452,7 +497,7 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
     - **Objetivo de Aprendizagem:** O aluno saberá como configurar uma `Camera2D` para seguir o jogador de forma profissional e entenderá a base para a criação de um minimapa.
     - **Exercício Prático Sugerido:** Adicionar uma `Camera2D` a um `CharacterBody2D` em um nível de `TileMap` grande. Configurar os `limits` da câmera para as bordas do mapa. Experimentar diferentes valores de `smoothing_speed` para ver o efeito no seguimento do jogador.
 
-  - **Aula 1.15: Arquitetura de Comportamento com Máquinas de Estado (FSM)**
+  - **Aula 1.19: Arquitetura de Comportamento com Máquinas de Estado (FSM)**
 
     - **Conceito Central:** Apresentar o padrão de design **Máquina de Estados Finitos (FSM)** como a principal arquitetura para gerenciar comportamentos complexos e excludentes em entidades de jogo (jogador, IA). Diferenciar de uma FSM visual (como `AnimationPlayer`) para uma FSM implementada em código para máxima flexibilidade.
     - **Tópicos a Cobrir:**
@@ -464,7 +509,7 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
     - **Objetivo de Aprendizagem:** O aluno deve ser capaz de explicar o que é uma FSM, por que ela é usada, e entender a estrutura de código para implementar uma em GDScript.
     - **Exercício Prático Sugerido:** Criar os scripts `State.gd` e `StateMachine.gd`. Criar dois estados simples (`LightOnState.gd`, `LightOffState.gd`) que apenas imprimem mensagens no console. Criar uma cena com um `StateMachine` e os dois estados, e um `Button` que chama `state_machine.transition_to()` para alternar entre os estados.
 
-  - **Aula 1.16: Efeitos Visuais com Sistemas de Partículas**
+  - **Aula 1.20: Efeitos Visuais com Sistemas de Partículas**
 
     - **Conceito Central:** Introduzir o nó `GPUParticles2D` como a ferramenta de alta performance da Godot para criar "juice" e feedback visual através de efeitos de partículas (fogo, fumaça, explosões, brilhos mágicos).
     - **Tópicos a Cobrir:**
@@ -475,7 +520,7 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
     - **Objetivo de Aprendizagem:** O aluno será capaz de configurar um `GPUParticles2D` para criar efeitos visuais simples e estilizados.
     - **Exercício Prático Sugerido:** Criar três cenas de efeitos de partículas: uma explosão simples que é `one_shot`, um rastro de fumaça contínuo, e um efeito de "power-up" com partículas que sobem lentamente.
 
-  - **Aula 1.17: Animação Avançada com `AnimationTree`**
+  - **Aula 1.21: Animação Avançada com `AnimationTree`**
 
     - **Conceito Central:** Apresentar a `AnimationTree` como a ferramenta de nível profissional para gerenciar animações complexas de personagens, permitindo transições suaves e lógicas entre diferentes clipes de animação do `AnimationPlayer`.
     - **Tópicos a Cobrir:**
@@ -487,7 +532,7 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
     - **Objetivo de Aprendizagem:** O aluno entenderá como e por que usar uma `AnimationTree` para criar um controlador de animação robusto e escalável para um personagem.
     - **Exercício Prático Sugerido:** Pegar um `AnimationPlayer` com animações de "Idle" e "Walk". Criar uma `AnimationTree` e uma `AnimationNodeStateMachine` para fazer a transição entre as duas animações com base em uma variável `is_moving`.
 
-  - **Aula 1.18: Sistemas de Inventário Orientado a Dados**
+  - **Aula 1.22: Sistemas de Inventário Orientado a Dados**
 
     - **Conceito Central:** Apresentar a arquitetura de um sistema de inventário simples, onde os itens são `Resource`s e a lógica de gerenciamento é centralizada. Focar na separação entre os dados do item (`ItemResource`) e os dados do inventário (a lista de itens que o jogador possui).
     - **Tópicos a Cobrir:**
@@ -498,7 +543,7 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
     - **Objetivo de Aprendizagem:** O aluno entenderá a arquitetura de dados e a lógica por trás de um sistema de inventário modular.
     - **Exercício Prático Sugerido:** Criar um `ItemResource` para "Poção" e "Moeda". Criar um script `Inventory.gd` (não um Autoload ainda) com um array e funções `add_item`/`remove_item`. Usar botões na UI para chamar essas funções e imprimir o conteúdo do array no console para verificar a lógica.
 
-  - **Aula 1.19: UI de Inventário e a Hotbar**
+  - **Aula 1.23: UI de Inventário e a Hotbar**
     - **Conceito Central:** Ensinar como criar uma interface de usuário (UI) que representa visualmente os dados de um sistema de inventário. Introduzir o conceito de **Hotbar** como um componente de UI comum para acesso rápido a itens.
     - **Tópicos a Cobrir:**
       - Usando um `GridContainer` para criar a grade do inventário.
@@ -557,7 +602,7 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
   - **Aula 2.7: Setup dos Sistemas Globais (Autoloads)**
 
     - **Conceito Central:** Estruturar a arquitetura de Autoloads para gerenciar o estado, cenas, áudio e configurações de forma global e desacoplada.
-    - **Projeto:** Configurar os Autoloads essenciais: `GameManager.gd` (para estado e flags de progresso), `AudioManager.gd`, `SceneManager.gd` (para transições de cena) e `SettingsManager.gd` (para configurações futuras).
+    - **Projeto:** Configurar os Autoloads essenciais: `GlobalMachine.gd` (para estado e flags de progresso), `AudioManager.gd`, `SceneManager.gd` (para transições de cena) e `SettingsManager.gd` (para configurações futuras).
     - **Objetivo de Aprendizagem:** O aluno aprenderá a estruturar um projeto com singletons para gerenciar sistemas globais, formando a espinha dorsal da arquitetura do jogo.
 
   - **Aula 2.8: Coletáveis e o `InventoryManager`**
@@ -569,7 +614,7 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
   - **Aula 2.9: Construindo a HUD: Barra de Vida e Hotbar**
 
     - **Conceito Central:** Construir a interface principal do jogo e conectá-la aos sistemas globais para exibir dados em tempo real.
-    - **Projeto:** Criar a cena `HUD.tscn` (`CanvasLayer`). Adicionar uma barra de vida que se atualiza com sinais do `GameManager`. Criar uma `HotbarUI` que se conecta ao `InventoryManager.inventory_changed` para exibir os itens coletados.
+    - **Projeto:** Criar a cena `HUD.tscn` (`CanvasLayer`). Adicionar uma barra de vida que se atualiza com sinais do `GlobalMachine`. Criar uma `HotbarUI` que se conecta ao `InventoryManager.inventory_changed` para exibir os itens coletados.
     - **Objetivo de Aprendizagem:** O aluno aprenderá a criar uma interface de usuário reativa que reflete o estado do jogo, conectando a UI a diferentes gerenciadores.
 
   - **Aula 2.10: Sistema de Loot com `LootSystem`**
@@ -578,17 +623,17 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
     - **Projeto:** Criar os `Resource`s `LootTable.gd` e `LootItem.gd`. Criar o Autoload `LootSystem.gd`. Ao ser destruído, o Dummy usará o `LootSystem` para processar sua `LootTable` e instanciar os drops (ex: `Coin.tscn`).
     - **Objetivo de Aprendizagem:** O aluno aprenderá a criar um sistema de loot ponderado, orientado a dados, para gerenciar as recompensas do jogo.
 
-  - **Aula 2.11: Desbloqueio de Itens com Flags no `GameManager`**
+  - **Aula 2.11: Desbloqueio de Itens com Flags no `GlobalMachine`**
 
     - **Conceito Central:** Criar um item no mundo que desbloqueia permanentemente uma nova opção para o jogador, salvando esse progresso em um gerenciador de estado global.
-    - **Projeto:** Criar a cena `WeaponPickup.tscn` que exporta uma `WeaponData`. Colocar uma instância no laboratório com o `rifle.tres`. Ao coletar, o `GameManager` define uma flag de progresso (ex: `game_progress["rifle_unlocked"] = true`).
+    - **Projeto:** Criar a cena `WeaponPickup.tscn` que exporta uma `WeaponData`. Colocar uma instância no laboratório com o `rifle.tres`. Ao coletar, o `GlobalMachine` define uma flag de progresso (ex: `game_progress["rifle_unlocked"] = true`).
     - **Objetivo de Aprendizagem:** O aluno aprenderá a usar um gerenciador de estado central para rastrear e persistir o progresso e os desbloqueios do jogador.
 
   - **Aula 2.12: Troca de Armas e Hotbar Funcional**
 
     - **Conceito Central:** Implementar a lógica de troca entre as armas desbloqueadas, usando a Hotbar como interface visual e funcional.
     - **Projeto:** Implementar a troca de armas no Player (ex: com a roda do mouse ou teclas numéricas). O Player emite um sinal `weapon_switched`. A HUD ouve este sinal para destacar o slot ativo na Hotbar e exibir o nome da arma.
-    - **Objetivo de Aprendizagem:** O aluno aprenderá a criar uma UI interativa e a usar sinais para manter múltiplos sistemas (Player, HUD, GameManager) sincronizados.
+    - **Objetivo de Aprendizagem:** O aluno aprenderá a criar uma UI interativa e a usar sinais para manter múltiplos sistemas (Player, HUD, GlobalMachine) sincronizados.
 
   - **Aula 2.13: O Inimigo Móvel (A Abordagem Direta)**
 
@@ -617,13 +662,13 @@ Este documento delineia a trilha de aprendizagem completa do curso. A estrutura 
   - **Aula 2.17: Gerenciando a Vida do Player e a HUD Completa**
 
     - **Conceito Central:** Fechar o loop de combate, permitindo que o jogador também receba dano.
-    - **Projeto:** Adicionar o sinal `health_changed` ao `GameManager`. Criar uma "Bala de Inimigo" em uma layer diferente. Ajustar as máscaras de colisão para que o Player seja atingido. A HUD se conecta ao `health_changed` para exibir a vida do jogador.
+    - **Projeto:** Adicionar o sinal `health_changed` ao `GlobalMachine`. Criar uma "Bala de Inimigo" em uma layer diferente. Ajustar as máscaras de colisão para que o Player seja atingido. A HUD se conecta ao `health_changed` para exibir a vida do jogador.
     - **Objetivo de Aprendizagem:** O aluno será capaz de gerenciar o estado completo do jogador e criar uma HUD reativa.
 
-  - **Aula 2.18: O Sistema de Save/Load com `SaveManager`**
+  - **Aula 2.18: O Sistema de Save/Load com `SaveSystem`**
 
     - **Conceito Central:** Persistir o estado do jogo em um arquivo para que o progresso do jogador não seja perdido, usando um gerenciador dedicado.
-    - **Projeto:** Implementar o Autoload `SaveManager.gd`. Suas funções `save_game()` e `load_game()` irão orquestrar a coleta de dados de outros sistemas (ex: `GameManager.get_save_data()`, `InventoryManager.get_save_data()`), convertê-los para JSON e usar `FileAccess` para salvar/ler o arquivo.
+    - **Projeto:** Implementar o Autoload `SaveSystem.gd`. Suas funções `save_game()` e `load_game()` irão orquestrar a coleta de dados de outros sistemas (ex: `GlobalMachine.get_save_data()`, `InventoryManager.get_save_data()`), convertê-los para JSON e usar `FileAccess` para salvar/ler o arquivo.
     - **Objetivo de Aprendizagem:** O aluno aprenderá a criar um sistema de salvamento robusto que interage com múltiplos gerenciadores para persistir o estado completo do jogo.
 
   - **Aula 2.19: O Sistema de Pause**

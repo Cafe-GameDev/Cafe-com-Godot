@@ -58,7 +58,7 @@ signal inimigo_derrotado(posicao_inimigo)
         GlobalEvents.jogador_morreu.emit()
         queue_free()
     ```
-*   **Recepção:** Outros sistemas, como a UI ou um `GameManager`, podem ouvir esses eventos globais:
+*   **Recepção:** Outros sistemas, como a UI ou um `GlobalMachine`, podem ouvir esses eventos globais:
     ```gdscript
     # No script da UI
     func _ready():
