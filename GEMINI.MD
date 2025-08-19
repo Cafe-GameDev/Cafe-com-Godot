@@ -162,3 +162,8 @@ Ao me pedirem para implementar um sistema de salvamento de configurações, devo
 4.  **UI (Feedback):** A UI ouvirá o sinal de sucesso para exibir uma notificação.
 
 Este padrão garante que a UI, as Configurações e o sistema de Salvamento permaneçam completamente independentes.
+
+
+
+
+Sempre faça testes automatizados, para isso use as flags --verbose --quit --headless, e sempre testa uma vez com a flag -e e depois sem essa flag, e ao terminar, quando os testes automatizados não derem nenhum erro, não considere que foi um sucesso, mas sim abra a godot só com as flags --verbose e peça para o desenvolvedor / usuario testar o jogo manualmente, pós tem erros que só vão aparecer em testes manuais
