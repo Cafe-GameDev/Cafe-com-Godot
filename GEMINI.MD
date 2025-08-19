@@ -164,6 +164,65 @@ Ao me pedirem para implementar um sistema de salvamento de configurações, devo
 Este padrão garante que a UI, as Configurações e o sistema de Salvamento permaneçam completamente independentes.
 
 
+### Padrão de Comunicação para Dados Persistentes
+
+Para garantir o desacoplamento e a previsibilidade, qualquer sistema que gerencie dados que precisam ser salvos e carregados (configurações, idioma, mapeamento de teclas, etc.) deve seguir um rigoroso padrão de comunicação com 5 sinais através do `GlobalEvents`.
+
+O padrão utiliza um prefixo de **escopo** (ex: `settings_`, `language_`) e um sufixo de **ação** para formar nomes de sinais consistentes.
+
+**O Padrão Base:**
+
+1.  **`[escopo]_changed(dados: Dictionary)`**
+    *   **Propósito:** Notificação de mudança em tempo real ("live").
+    *   **Emitido por:** Controles da UI (sliders, botões) quando o valor é alterado.
+    *   **Carga:** Um dicionário contendo *apenas* a chave e o valor que mudaram.
+    *   **Ouvido por:** O `Manager` correspondente, para atualizar seu estado interno "ao vivo".
+
+2.  **`request_loading_[escopo]_changed()`**
+    *   **Propósito:** Requisição para carregar os dados do disco.
+    *   **Emitido por:** Scripts de UI (no `_ready`) para se popularem com os dados salvos, ou por botões (como "Voltar") para reverter alterações não salvas.
+    *   **Carga:** Nenhuma.
+    *   **Ouvido por:** O `Manager` correspondente.
+
+3.  **`loading_[escopo]_changed(dados: Dictionary)`**
+    *   **Propósito:** Resposta à requisição de carregamento.
+    *   **Emitido por:** O `Manager`, após carregar, validar e mesclar os dados do disco com os padrões.
+    *   **Carga:** O dicionário *completo* e validado das configurações.
+    *   **Ouvido por:** Todos os scripts de UI e sistemas que dependem desses dados.
+
+4.  **`request_saving_[escopo]_changed()`**
+    *   **Propósito:** Requisição para persistir o estado "ao vivo" atual no disco.
+    *   **Emitido por:** Botões de "Aplicar" ou "Salvar".
+    *   **Carga:** Nenhuma.
+    *   **Ouvido por:** O `Manager` correspondente.
+
+5.  **`request_reset_[escopo]_changed()`**
+    *   **Propósito:** Requisição para redefinir as configurações para os padrões de fábrica.
+    *   **Emitido por:** Um botão "Restaurar Padrões".
+    *   **Carga:** Nenhuma.
+    *   **Ouvido por:** O `Manager`, que substituirá seu estado "ao vivo" pelos padrões e, em seguida, salvará em disco.
+
+**Exemplos de Aplicação:**
+
+*   **Settings (Áudio/Vídeo):**
+    *   `settings_changed`
+    *   `request_loading_settings_changed`
+    *   `loading_settings_changed`
+    *   `request_saving_settings_changed`
+    *   `request_reset_settings_changed`
+*   **Language (Idioma):**
+    *   `language_changed`
+    *   `request_loading_language_changed`
+    *   `loading_language_changed`
+    *   `request_saving_language_changed`
+    *   `request_reset_language_changed`
+*   **Inputs (Mapeamento de Teclas - Futuro):**
+    *   `inputs_changed`
+    *   `request_loading_inputs_changed`
+    *   `loading_inputs_changed`
+    *   `request_saving_inputs_changed`
+    *   `request_reset_inputs_changed`
+
 
 
 Sempre faça testes automatizados, para isso use as flags --verbose --quit --headless, e sempre testa uma vez com a flag -e e depois sem essa flag, e ao terminar, quando os testes automatizados não derem nenhum erro, não considere que foi um sucesso, mas sim abra a godot só com as flags --verbose e peça para o desenvolvedor / usuario testar o jogo manualmente, pós tem erros que só vão aparecer em testes manuais
