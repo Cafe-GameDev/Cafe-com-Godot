@@ -138,20 +138,33 @@ O padrão arquitetural **BodyLess** é a doutrina principal e obrigatória de to
 
 O template BodyLess oferece um conjunto de sistemas essenciais pré-configurados, como um menu de café cuidadosamente elaborado para otimizar seu fluxo de trabalho:
 
-#### Singletons (Autoloads): Os Especialistas do Bar
+#### Singletons (Autoloads): Os Especialistas da Cafeteria
 
 *   **`GlobalEvents` (Event Bus):**
     *   **Propósito:** O coração da comunicação desacoplada. Contém exclusivamente declarações de `signal`, atuando como um quadro de avisos central e passivo para eventos globais. É o "balcão de pedidos" onde todos os sistemas se comunicam sem saber quem está do outro lado.
 
 *   **`AudioManager`:**
-    *   **Propósito:** Centralizar o carregamento e a reprodução de música e efeitos sonoros (SFX).
-    *   **Eficiência:** Carrega sons dinamicamente de pastas, os categoriza automaticamente e usa um pool de players para SFX, evitando que sons se cortem. É o "maestro" da trilha sonora do seu café.
+    *   **Propósito:** Centralizar o carregamento, organização e reprodução de música e efeitos sonoros (SFX). Atua como o "maestro" da trilha sonora do seu café, garantindo uma experiência sonora fluida e desacoplada.
+    *   **Funcionamento:**
+        *   **Carregamento Dinâmico:** Carrega automaticamente arquivos de áudio de diretórios específicos (`res://Assets/Audio/`), categorizando-os em bibliotecas de SFX e música (`_sfx_library`, `_music_library`).
+        *   **Pool de SFX Players:** Utiliza um pool configurável de `AudioStreamPlayer` (`_sfx_player_count`) para reproduzir SFX, evitando que sons se cortem e otimizando a performance.
+        *   **Gestão de Música:** Gerencia playlists de música, permitindo a reprodução aleatória de faixas dentro de uma categoria e a transição automática ou manual entre elas.
+    *   **Comunicação (via GlobalEvents):**
+        *   **Ouve:** `play_sfx_by_key_requested` (para tocar SFX), `music_change_requested` (para trocar de música), `setting_changed` e `loading_settings_changed` (para ajustar volumes de Master, Música e SFX com base nas configurações do `SettingsManager`).
+        *   **Emite:** `music_track_changed` (notifica qual faixa de música está tocando).
+    *   **Controle de Volume:** Reage a mudanças de volume de áudio (Master, Música, SFX) recebidas do `SettingsManager` via `GlobalEvents`, aplicando-as aos respectivos buses de áudio.
 *   **`SettingsManager`:**
-    *   **Propósito:** Gerenciar o estado das configurações do jogo (áudio, vídeo, etc.) em um dicionário. Ele aplica as configurações e reage a mudanças, mas não lida com salvamento/carregamento. É o "cardápio de preferências" do seu cliente.
+    *   **Propósito:** Gerenciar o estado de todas as configurações do jogo (áudio, vídeo, idioma, e **mapeamento de inputs**) em dicionários internos. Ele é o "cardápio de preferências" do seu cliente, responsável por manter e distribuir esses dados, mas não por aplicá-los diretamente ou processar inputs brutos.
+    *   **Funcionamento:**
+        *   **Gerenciamento de Dados:** Mantém dicionários separados para configurações gerais (`_current_settings`) e mapeamento de inputs (`_current_input_map`).
+        *   **Persistência:** Responde a requisições de salvamento e carregamento, interagindo com o `SaveSystem` para persistir tanto as configurações gerais quanto o mapeamento de inputs (potencialmente em arquivos separados para permitir resets independentes).
+        *   **Reset Independente:** Permite o reset de *apenas* o mapeamento de inputs para os valores padrão, sem afetar outras configurações.
+    *   **Comunicação (via GlobalEvents):**
+        *   **Ouve:** `request_loading_settings_changed()` (para carregar configurações gerais), `request_saving_settings_changed()` (para salvar configurações gerais), `request_reset_settings_changed()` (para resetar configurações gerais), `request_reset_input_map()` (para resetar apenas o mapeamento de inputs), e `input_map_changed(new_input_map_data: Dictionary)` (para atualizar o mapeamento de inputs a partir da UI).
+        *   **Emite:** `loading_settings_changed(settings_data: Dictionary)` (com configurações gerais carregadas/resetadas), `setting_changed(change_data: Dictionary)` (com mudanças em tempo real nas configurações gerais), e `loading_input_map_changed(input_map_data: Dictionary)` (com o mapeamento de inputs carregado/resetado).
 *   **`SaveSystem`:**
     *   **Propósito:** Único responsável por interagir com o sistema de arquivos. Ele salva e carrega dicionários de dados (como as configurações do `SettingsManager`) em formato JSON no diretório `user://`. É o "caderno de receitas" que guarda o segredo do seu café.
-*   **`InputManager`:**
-    *   **Propósito:** Traduzir input bruto (teclado, controle) em sinais de "intenção" para o `GlobalEvents`, desacoplando a entrada física da ação do jogo. É o "sensor de toque" que entende o que o cliente quer, sem se preocupar com o tipo de "botão" que ele apertou.
+
 *   **`DebugConsole`:**
     *   **Propósito:** Fornecer feedback visual para depuração em tempo real, ouvindo todos os sinais do `GlobalEvents` e exibindo um log formatado. É o "painel de controle" do barista, mostrando o que está acontecendo nos bastidores.
 *   **`InventoryManager`:**
@@ -168,6 +181,11 @@ O template BodyLess oferece um conjunto de sistemas essenciais pré-configurados
     *   **Propósito:** Um EventBus para comunicação entre nós *dentro* da mesma cena, mantendo o escopo local.
 *   **`LocalMachine`:**
     *   **Propósito:** Uma máquina de estados para gerenciar o estado de uma cena de jogo específica (fase/nível).
+*   **`GlobalMachine`:**
+    *   **Propósito:** Gerencia os estados globais do jogo (MENU, PLAYING, PAUSED, SETTINGS, etc.), centralizando a lógica de fluxo e determinando o que pode acontecer em cada momento. É o "gerente de palco" que orquestra a experiência geral do jogo.
+    *   **Funcionamento:** Define um `enum State` para todos os estados possíveis. Reage a sinais de "intenção" do `GlobalEvents` (ex: `pause_toggled`, `show_settings_menu_requested`) para transicionar entre os estados.
+    *   **Comunicação:** Emite o sinal `game_state_changed(new_state: String, previous_state: String)` no `GlobalEvents` para notificar outros sistemas (como o `SceneControl` para a UI) sobre a mudança de estado, mantendo o desacoplamento.
+    *   **Controle de Pausa:** Gerencia diretamente o `get_tree().paused` para pausar ou despausar o jogo conforme o estado atual.
 
 #### Sistema de UI Reativo: A Xícara Inteligente
 
