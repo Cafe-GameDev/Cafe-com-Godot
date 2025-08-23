@@ -142,6 +142,25 @@ O template BodyLess oferece um conjunto de sistemas essenciais pré-configurados
 
 *   **`GlobalEvents` (Event Bus):**
     *   **Propósito:** O coração da comunicação desacoplada. Contém exclusivamente declarações de `signal`, atuando como um quadro de avisos central e passivo para eventos globais. É o "balcão de pedidos" onde todos os sistemas se comunicam sem saber quem está do outro lado.
+    *   **Sinais de Configuração (Settings):**
+        *   `setting_changed(setting_key: String, new_value: Variant)`: Emitido quando uma configuração geral é alterada.
+        *   `request_loading_settings_changed()`: Solicita o carregamento das configurações gerais.
+        *   `loading_settings_changed(settings_data: Dictionary)`: Emitido após as configurações gerais serem carregadas.
+        *   `request_saving_settings_changed()`: Solicita o salvamento das configurações gerais.
+        *   `request_reset_settings_changed()`: Solicita o reset das configurações gerais para os valores padrão.
+    *   **Sinais de Mapeamento de Input (InputMap):**
+        *   `input_map_changed(input_map_data: Dictionary)`: Emitido pelo SettingsManager quando o mapeamento de input é alterado (ex: pela UI de remapeamento).
+        *   `loading_input_map_changed(input_map_data: Dictionary)`: Emitido pelo SettingsManager após carregar os dados do mapeamento de input (ou após um reset de input).
+        *   `request_reset_input_map()`: Emitido pela UI para solicitar o reset apenas do mapeamento de input.
+    *   **Sinais de Estado do Jogo:**
+        *   `game_state_changed(new_state: String, previous_state: String)`: Notifica sobre mudanças no estado global do jogo (MENU, PLAYING, PAUSED, etc.).
+    *   **Sinais de Áudio:**
+        *   `play_sfx_by_key_requested(sfx_key: String)`: Solicita a reprodução de um efeito sonoro.
+        *   `music_change_requested(music_key: String)`: Solicita a mudança da música de fundo.
+        *   `music_track_changed(music_key: String)`: Notifica qual faixa de música está tocando.
+    *   **Sinais de Cena:**
+        *   `scene_push_requested(scene_path: String)`: Solicita o carregamento e exibição de uma nova cena.
+        *   `scene_pop_requested()`: Solicita o retorno à cena anterior.
 
 *   **`AudioManager`:**
     *   **Propósito:** Centralizar o carregamento, organização e reprodução de música e efeitos sonoros (SFX). Atua como o "maestro" da trilha sonora do seu café, garantindo uma experiência sonora fluida e desacoplada.
@@ -153,15 +172,7 @@ O template BodyLess oferece um conjunto de sistemas essenciais pré-configurados
         *   **Ouve:** `play_sfx_by_key_requested` (para tocar SFX), `music_change_requested` (para trocar de música), `setting_changed` e `loading_settings_changed` (para ajustar volumes de Master, Música e SFX com base nas configurações do `SettingsManager`).
         *   **Emite:** `music_track_changed` (notifica qual faixa de música está tocando).
     *   **Controle de Volume:** Reage a mudanças de volume de áudio (Master, Música, SFX) recebidas do `SettingsManager` via `GlobalEvents`, aplicando-as aos respectivos buses de áudio.
-*   **`SettingsManager`:**
-    *   **Propósito:** Gerenciar o estado de todas as configurações do jogo (áudio, vídeo, idioma, e **mapeamento de inputs**) em dicionários internos. Ele é o "cardápio de preferências" do seu cliente, responsável por manter e distribuir esses dados, mas não por aplicá-los diretamente ou processar inputs brutos.
-    *   **Funcionamento:**
-        *   **Gerenciamento de Dados:** Mantém dicionários separados para configurações gerais (`_current_settings`) e mapeamento de inputs (`_current_input_map`).
-        *   **Persistência:** Responde a requisições de salvamento e carregamento, interagindo com o `SaveSystem` para persistir tanto as configurações gerais quanto o mapeamento de inputs (potencialmente em arquivos separados para permitir resets independentes).
-        *   **Reset Independente:** Permite o reset de *apenas* o mapeamento de inputs para os valores padrão, sem afetar outras configurações.
-    *   **Comunicação (via GlobalEvents):**
-        *   **Ouve:** `request_loading_settings_changed()` (para carregar configurações gerais), `request_saving_settings_changed()` (para salvar configurações gerais), `request_reset_settings_changed()` (para resetar configurações gerais), `request_reset_input_map()` (para resetar apenas o mapeamento de inputs), e `input_map_changed(new_input_map_data: Dictionary)` (para atualizar o mapeamento de inputs a partir da UI).
-        *   **Emite:** `loading_settings_changed(settings_data: Dictionary)` (com configurações gerais carregadas/resetadas), `setting_changed(change_data: Dictionary)` (com mudanças em tempo real nas configurações gerais), e `loading_input_map_changed(input_map_data: Dictionary)` (com o mapeamento de inputs carregado/resetado).
+
 *   **`SaveSystem`:**
     *   **Propósito:** Único responsável por interagir com o sistema de arquivos. Ele salva e carrega dicionários de dados (como as configurações do `SettingsManager`) em formato JSON no diretório `user://`. É o "caderno de receitas" que guarda o segredo do seu café.
 
@@ -446,7 +457,7 @@ Todos os modos compartilham os **mesmos sistemas fundamentais**:
 
 *   **Configurações (SettingsManager)**
 *   **Persistência (SaveSystem)**
-*   **Input e eventos (InputManager + GlobalEvents)**
+*   **Input e eventos (GlobalEvents)**
 *   **Áudio (AudioManager)**
 *   **UI modular (menus, HUD, tooltips, popovers, toasts, coach marks)**
 *   **Internacionalização (I18N com arquivos .po)**
@@ -491,13 +502,18 @@ Perfeito! Com base nas suas informações, dá pra organizar assim:
 
 6. **Autoloads / Singletons**
 
-   * `GlobalEvents`, `AudioManager`, `SettingsManager`, `SaveSystem`, `InputManager`, `DebugConsole` → **compartilhados entre todos os modos**.
+   * `GlobalEvents`, `AudioManager`, `SettingsManager`, `SaveSystem`, `DebugConsole` → **compartilhados entre todos os modos**.
    * Comunicação com cada modo via **EventBus**, mantendo desacoplamento.
 
 7. **Traduções (I18N / L10N)**
 
    * Todos os modos usam o **mesmo arquivo de idiomas**.
    * Textos de HUD, menus, tooltips, toasts e popovers **não precisam ser duplicados por modo**.
+
+8. **Lógica de Input Bruto e Adaptação:**
+   * A responsabilidade de processar o `_unhandled_input` e emitir sinais de "intenção" (ex: `pause_toggled`, `input_inventory_pressed`) é dos **consumidores de input** (Player, GlobalMachine, etc.), e não de um manager centralizado.
+   * Cada consumidor de input recebe o mapeamento de inputs do `SettingsManager` e o utiliza para interpretar os eventos brutos de input de acordo com o contexto do modo de jogo.
+   * Isso garante que a interpretação do input seja adaptável e específica para cada modo, mantendo o desacoplamento e a flexibilidade.
 
 ---
 
@@ -538,6 +554,11 @@ Embora os modos de jogo compartilhem sistemas fundamentais, suas implementaçõe
     *   **TopDown (2D):** Fixa ou seguindo o jogador.
     *   **Platformer (2D):** Lateral ou com scroll.
     *   **3D:** Dinâmica, com opções de primeira ou terceira pessoa (FPS/TPP).
+
+*   **Interpretação de Inputs:**
+    *   Cada modo de jogo (TopDown, Platformer, 3D) é responsável por consumir os eventos de input brutos (`_unhandled_input`) e interpretá-los com base no mapeamento de inputs fornecido pelo `SettingsManager`.
+    *   Isso permite que a mesma ação (ex: "pular") seja mapeada para diferentes teclas ou comportamentos de acordo com o modo de jogo.
+    *   Os consumidores de input emitem sinais de "intenção" (ex: `GlobalEvents.emit_signal("player_jump_requested")`) após a interpretação, mantendo o desacoplamento.
 
 ---
 
